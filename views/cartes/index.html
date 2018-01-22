@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<h2>Cartes</h2>
+
+	{% for p in cartes%}
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<a href="/{{p._id}}">{{p.name}}</a>
+			</div>
+			<div class="panel-body">
+				{{p.description}}
+			</div>
+		</div>
+	{% endfor %}	
+
+{% endblock %}
