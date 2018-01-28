@@ -6,7 +6,7 @@ var raritySchema = new mongoose.Schema({
 		type: String, 
 		default: 'red'
 	}
-});
+}, {collection: 'raritys'});
 
 raritySchema.virtual('cartes', {
 	ref: 'Carte',
@@ -16,5 +16,4 @@ raritySchema.virtual('cartes', {
 
 var Rarity = mongoose.model('Rarity', raritySchema); 
 
-module.exports = Rarity; 
-
+module.exports = Rarity;

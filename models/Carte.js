@@ -4,12 +4,12 @@ var carteSchema = new mongoose.Schema({
 	name: String, 
 	description: String,
 	picture: String,
-	raritys: [
+	raritys:[
 		{
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'Rarity'
 		}
-	] 
+	]
 
 }); 
 

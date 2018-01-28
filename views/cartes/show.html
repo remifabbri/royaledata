@@ -3,16 +3,19 @@
 {% block content %}
 	<div class="row">
 		<div class="col-sm-3">
-			
+			<img src="/uploads/{{carte.picture}}" alt="{{carte.name}}" style="width:100%;">
 		</div>
 		<div class="col-sm-9">
 			<h2>{{carte.name}}</h2>
+			<a href="/edit/{{carte._id}}" class="btn btn-default">Éditer</a>
+			<a href="/delete/{{carte._id}}" class="btn btn-danger">Supprimer</a>
+			<hr>
 			<p class="lead">
 				{{carte.description}}
 			</p>
 			<h3>Rarity :</h3>
-			{% for t in cartes.raritys %}
-			<div style="background-color: {{t.color}}" class="label label-default">{{t.name}}</div>
+			{% for t in carte.raritys %}
+			<a href="/raritys/{{t.name}}" style="background-color: {{t.color}}" class="label label-default">{{t.name}}</a>
 			{% endfor %}
 		</div>
 	</div>	

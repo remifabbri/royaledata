@@ -2,7 +2,7 @@
 
 {% block content %}
 
-	<form action="POST">
+	<form method="POST" action="{{endpoint}}" enctype="multipart/form-data">
 		<div class="form-group">
 			<label for="name">Nom de la carte</label>
 			<input type="text" id="name" name="name" class="form-control" value="{{carte.name}}">
@@ -18,7 +18,7 @@
 		<div class="form-group">
 			{% for rarity in raritys %}
 			<label for="">
-				<input type="checkbox" name="raritys[]" value="{{rarity.name}}" {% if pokemon.types.indexOf(type._id) != -1 %}checked{% endif %} >
+				<input type="checkbox" name="raritys[]" value="{{rarity._id}}" {% if carte.raritys.indexOf(rarity._id) != -1 %}checked{% endif %} >
 				{{rarity.name}}
 			</label>
 			{% endfor %}

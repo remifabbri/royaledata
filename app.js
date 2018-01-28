@@ -1,30 +1,37 @@
 var express = require('express'); 
 var mongoose = require('mongoose'); 
 var nunjucks = require('nunjucks'); 
+var bodyParser = require('body-parser'); 
+var multer = require('multer'); 
 
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/royaledata', { useMongoClient: true });
-mongoose.Promise = global.Promise;
+var upload = multer({
+	dest: __dirname + '/uploads'
+})
+
+mongoose.connect('mongodb://localhost:27017/royaledata');
+mongoose.set('debug', true); 
 
 require('./models/Carte'); 
 require('./models/Rarity');
 
 var app = express();
 
+app.use(bodyParser.urlencoded()); 
+app.use(upload.single('file')); 
+
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css')); 
 
 app.use('/', require('./routes/cartes')); 
 app.use('/raritys', require('./routes/raritys')); 
 
-/* app.get('/',(req, res) => {
-	res.send('salut')
-}) */
+app.use('/', express.static(__dirname + '/public'));
+app.use('/uploads', express.static(__dirname + '/uploads')); 
+
 
 nunjucks.configure('views', {
     autoescape: true,
     express: app
 });
-
 
 console.log('royaledata lancé sur le port 3000');
 app.listen(3000); 

@@ -2,16 +2,18 @@
 
 {% block content %}
 	<h2>Cartes</h2>
-
-	{% for p in cartes%}
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<a href="/{{p._id}}">{{p.name}}</a>
-			</div>
-			<div class="panel-body">
-				{{p.description}}
-			</div>
-		</div>
-	{% endfor %}	
+	<a href="/new" class="btn btn-primary">Ajouter une carte</a>
+	<hr>
+	<div class="viewCarte">
+		{% for p in cartes %}
+			<a href="/{{p._id}}">
+				<div >
+					<img src="/uploads/{{p.picture}}" alt="{{p.name}}" style="width:100px;">
+					<div class="carteMoz" style="background-color: {{p.raritys._id.color}}">{{p.name}}</div>
+				</div>
+			</a>
+		{% endfor %}
+	</div>
+		
 
 {% endblock %}
