@@ -2,7 +2,8 @@ var express = require('express');
 var mongoose = require('mongoose'); 
 var nunjucks = require('nunjucks'); 
 var bodyParser = require('body-parser'); 
-var multer = require('multer'); 
+var multer = require('multer');
+
 
 var upload = multer({
 	dest: __dirname + '/uploads'

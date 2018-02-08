@@ -6,7 +6,7 @@ var Rarity = require('./../models/Rarity');
 router.get('/', (req, res) => {
 	Rarity.find({}).then(raritys =>{
 		Carte.find({}).populate('raritys').then(cartes => {
-			res.render('cartes/index.html', {cartes: cartes, raritys: raritys,}); 
+			res.render('cartes/index.html', {cartes: cartes, raritys: raritys,});
 		}); 
 	}); 
 });
@@ -53,7 +53,35 @@ router.post('/:id?', (req, res) => {
 	}).then(carte => {
 		carte.name = req.body.name; 
 		carte.description = req.body.description; 
-		carte.raritys = req.body.raritys; 
+		carte.raritys = req.body.raritys;
+		carte.elixircost = req.body.elixircost;
+		carte.damage = req.body.damage;
+		carte.dps = req.body.dps;
+		carte.hitpoints = req.body.hitpoints;
+		carte.hitspeed = req.body.hitspeed;
+		carte.crowntowerdamage = req.body.crowntowerdamage;
+		carte.speed = req.body.speed;
+		carte.range = req.body.range;
+		carte.targets = req.body.targets;
+		carte.deploy = req.body.deploy;
+		carte.areadamage = req.body.areadamage;
+		carte.radius = req.body.radius;
+		carte.freezeduration = req.body.freezeduration;
+		carte.stunduration = req.body.stunduration;
+		carte.healing = req.body.healing;
+		carte.duration = req.body.duration;
+		carte.howmuch = req.body.howmuch;
+		carte.spawnspeed = req.body.spawnspeed;
+		carte.lifetime = req.body.lifetime;
+		carte.boost = req.body.boost;
+		carte.shieldhitpoints = req.body.shieldhitpoints;
+		carte.deathdamage = req.body.deathdamage;
+		carte.dashrange = req.body.dashrange;
+		carte.dashdamage = req.body.dashdamage;
+		carte.cmlvlcommon = req.body.cmlvlcommon;
+		carte.cmlvlrare = req.body.cmlvlrare;
+		carte.cmlvlepic = req.body.cmlvlepic;
+		carte.cmlvllegend = req.body.cmlvllegend;
 
 		if (req.file) carte.picture = req.file.filename; 
 
