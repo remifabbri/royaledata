@@ -4,6 +4,8 @@ var carteSchema = new mongoose.Schema({
 	name: String, 
 	description: String,
 	picture: String,
+	type: String, 
+
 	elixircost: Number,
 	damage: Number,
 	crowntowerdamage: Number,

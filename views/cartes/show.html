@@ -12,178 +12,264 @@
 		<div class="col-sm-9">
 			<div class="longTittleCartes">
 				<h2>{{carte.name}}</h2>
-				{% for t in carte.raritys %}
-					<a href="/raritys/{{t.name}}" style="background-color: {{t.color}}" class="LabelRarity">{{t.name}}</a>
-				{% endfor %}
+				<div>
+					<p>{{carte.type}}</p>
+					{% for t in carte.raritys %}
+						<a href="/raritys/{{t.name}}" style="background-color: {{t.color}}" class="LabelRarity">{{t.name}}</a>
+					{% endfor %}
+				</div>
 			</div>
 			<p>{{carte.description}}</p>
 			<hr>
 			{% if carte.hitpoints != Null %}
 				<div class="stats">
 					<img src="/images/iconHitPoints.png" alt="iconHitpoints">
-					<p>{{carte.hitpoints}}</p>
+					<div>
+						<p>Hit Points</p>
+						<p>{{carte.hitpoints}}</p>
+					</div>
 				</div>
 			{% endif %}
 			{% if carte.damage != Null %}
 				<div class="stats">
 					<img src="/images/iconDamage.png" alt="iconDamage">
-					<p>{{carte.damage}}</p>
+					<div>
+						<p>Damage</p>
+						<p>{{carte.damage}}</p>
+					</div>
 				</div>
 			{% endif %}
 			{% if carte.areadamage != Null %}
 				<div class="stats">
 					<img src="/images/iconDamage.png" alt="iconareadamage">
-					<p>{{carte.areadamage}}</p>
+					<div>
+						<p>Area Damage</p>
+						<p>{{carte.areadamage}}</p>
+					</div>
 				</div>
 			{% endif %}
 			{% if carte.crowntowerdamage != Null %}
 				<div class="stats">
 					<img src="/images/iconDmgAreaORCrownTowerDamage.png" alt="iconCrownTowerDamage">
-					<p>{{carte.crowntowerdamage}}</p>
+					<div>
+						<p>Crown Tower Damage</p>
+						<p>{{carte.crowntowerdamage}}</p>
+					</div>	
 				</div>
 			{% endif %}
 			{% if carte.dps != Null %}
 				<div class="stats">
 					<img src="/images/iconDPS.png" alt="iconDPS">
-					<p>{{carte.dps}}</p>
+					<div>
+						<p>Damage per second</p>
+						<p>{{carte.dps}}</p>
+					</div>	
 				</div>
 			{% endif %}
 			{% if carte.dps != Null and carte.damage != Null %}
 				<div class="stats">
 					<img src="/images/iconHitSpeed.png" alt="iconHitpoints">
-					<p>{{(carte.damage/carte.dps) | round(1)}}sec</p>
+					<div>
+						<p> Hit Speed</p>
+						<p>{{(carte.damage/carte.dps) | round(1)}}sec</p>
+					</div>	
 				</div>
 			{% endif %}
 			{% if carte.dps != Null and carte.areadamage != Null %}
 				<div class="stats">
 					<img src="/images/iconHitSpeed.png" alt="iconHitpoints">
-					<p>{{(carte.areadamage/carte.dps) | round(1)}}sec</p>
+					<div>
+						<p>Area Damage</p>
+						<p>{{(carte.areadamage/carte.dps) | round(1)}}sec</p>
+					</div>	
 				</div>
 			{% endif %}
 			{% if carte.speed != "" %}
 				<div class="stats">
 					<img src="/images/iconSpeed.png" alt="iconSpeed">
-					<p>{{carte.speed}}</p>
+					<div>
+						<p>Speed</p>
+						<p>{{carte.speed}}</p>
+					</div>
 				</div>
 			{% endif %}
 			{% if carte.range != Null %}
 				<div class="stats">
 					<img src="/images/iconRange.png" alt="iconRange">
-					<p>{{carte.range}}</p>
+					<div>
+						<p>Range</p>
+						<p>{{carte.range}}</p>
+					</div>
 				</div>
 			{% endif %}
 			{% if carte.healing != Null %}
 				<div class="stats">
 					<img src="/images/iconHealing.png" alt="iconHealing">
-					<p>{{carte.healing}}/sec</p>
+					<div>
+						<p>Healing/sec</p>
+						<p>{{carte.healing}}/sec</p>
+					</div>	
 				</div>
 			{% endif %}
 			{% if carte.duration != Null %}
 				<div class="stats">
 					<img src="/images/iconDeploy.png" alt="iconDuration">
-					<p>{{carte.duration}}sec</p>
+					<div>
+						<p>Duration</p>
+						<p>{{carte.duration}}sec</p>
+					</div>
 				</div>
 			{% endif %}
 			{% if carte.radius != Null %}
 				<div class="stats">
 					<img src="/images/iconRadius.png" alt="iconRadius">
-					<p>{{carte.radius}}</p>
+					<div>
+						<p>Radius</p>
+						<p>{{carte.radius}}</p>
+					</div>
 				</div>
 			{% endif %}
 			{% if carte.freezeduration != Null %}
 				<div class="stats">
 					<img src="/images/iconFreezeStun.png" alt="iconfreezeduration">
-					<p>{{carte.freezeduration}}sec</p>
+					<div>
+						<p>Freeze Duration</p>
+						<p>{{carte.freezeduration}}sec</p>
+					</div>
 				</div>
 			{% endif %}
 			{% if carte.stunduration != Null %}
 				<div class="stats">
 					<img src="/images/iconFreezeStun.png" alt="iconstunduration">
-					<p>{{carte.stunduration}}sec</p>
+					<div>
+						<p>Stun Duration</p>
+						<p>{{carte.stunduration}}sec</p>
+					</div>
 				</div>
 			{% endif %}
 			{% if carte.targets != "" %}
 				<div class="stats">
 					<img src="/images/iconTargets.png" alt="iconTargets">
-					<p>{{carte.targets}}</p>
+					<div>
+						<p>Targets</p>
+						<p>{{carte.targets}}</p>
+					</div>
 				</div>
 			{% endif %}
-			{% if carte.count != Null %}
+			{% if carte.howmuch != Null %}
 				<div class="stats">
 					<img src="/images/iconCount.png" alt="iconCount">
-					<p>{{carte.count}}</p>
+					<div>
+						<p>Count</p>
+						<p>{{carte.howmuch}}</p>
+					</div>
 				</div>
 			{% endif %}
 			{% if carte.spawnspeed != Null %}
 				<div class="stats">
 					<img src="/images/iconDeploy.png" alt="iconSpawnSpeed">
-					<p>{{carte.spawnspeed}}sec</p>
+					<div>
+						<p>Spawn Speed</p>
+						<p>{{carte.spawnspeed}}sec</p>
+					</div>
 				</div>
 			{% endif %}
 			{% if carte.lifetime != Null %}
 				<div class="stats">
-					<img src="/images/iconDeploy.png" alt="iconLifetime">
-					<p>{{carte.lifetime}}sec</p>
+					<img src="/images/iconDeploiement.png" alt="iconLifetime">
+					<div>
+						<p>Life Time</p>
+						<p>{{carte.lifetime}}sec</p>
+					</div>	
 				</div>
 			{% endif %}
 			{% if carte.boost != Null %}
 				<div class="stats">
 					<img src="/images/iconboost.png" alt="iconboost">
-					<p>+{{carte.boost}}%</p>
+					<div>
+						<p>Bosst</p>
+						<p>+{{carte.boost}}%</p>
+					</div>	
 				</div>
 			{% endif %}
 			{% if carte.shieldhitpoints != Null %}
 				<div class="stats">
 					<img src="/images/iconshieldhitpoints.png" alt="iconshieldhitpoints">
-					<p>{{carte.shieldhitpoints}}</p>
+					<div>
+						<p>Shield HitPoints</p>
+						<p>{{carte.shieldhitpoints}}</p>
+					</div>	
 				</div>
 			{% endif %}
 			{% if carte.deathdamage != Null %}
 				<div class="stats">
 					<img src="/images/icondeathdamage.png" alt="icondeathdamage">
-					<p>{{carte.deathdamage}}</p>
+					<div>
+						<p>Death Damage</p>
+						<p>{{carte.deathdamage}}</p>
+					</div>	
 				</div>
 			{% endif %}
 			{% if carte.dashrange != Null %}
 				<div class="stats">
 					<img src="/images/iconDashRange.png" alt="icondashrange">
-					<p>{{carte.dashrange}}</p>
+					<div>
+						<p>Dash Range</p>
+						<p>{{carte.dashrange}}</p>
+					</div>	
 				</div>
 			{% endif %}
 			{% if carte.dashdamage != Null %}
 				<div class="stats">
 					<img src="/images/iconDashDamage.png" alt="icondashdamage">
-					<p>{{carte.dashdamage}}</p>
+					<div>
+						<p>Dash Damage</p>
+						<p>{{carte.dashdamage}}</p>
+					</div>	
 				</div>
 			{% endif %}
 			{% if carte.deploy != Null %}
 				<div class="stats">
 					<img src="/images/iconDeploy.png" alt="iconDeploy">
-					<p>{{carte.deploy}}sec</p>
+					<div>
+						<p>Deploy</p>
+						<p>{{carte.deploy}}sec</p>
+					</div>	
 				</div>
 			{% endif %}
 			{% if carte.cmlvlcommon != Null %}
 				<div class="stats">
 					<img src="/images/iconcmlvlcommon.png" alt="iconcmlvlcommon">
-					<p>{{carte.cmlvlcommon}}</p>
+					<div>
+						<p>Cloned common lvl</p>
+						<p>{{carte.cmlvlcommon}}</p>
+					</div>	
 				</div>
 			{% endif %}
 			{% if carte.cmlvlrare != Null %}
 				<div class="stats">
 					<img src="/images/iconcmlvlrare.png" alt="iconcmlvlrare">
-					<p>{{carte.cmlvlrare}}</p>
+					<div>
+						<p>Cloned rare lvl</p>
+						<p>{{carte.cmlvlrare}}</p>
+					</div>	
 				</div>
 			{% endif %}
 			{% if carte.cmlvlepic != Null %}
 				<div class="stats">
 					<img src="/images/iconcmlvlepic.png" alt="iconcmlvlepic">
-					<p>{{carte.cmlvlepic}}</p>
+					<div>
+						<p>Cloned epic</p>
+						<p>{{carte.cmlvlepic}}</p>
+					</div>	
 				</div>
 			{% endif %}
 			{% if carte.cmlvllegend != Null %}
 				<div class="stats">
 					<img src="/images/iconcmlvllegend.png" alt="iconcmlvllegend">
-					<p>Lvl {{carte.cmlvllegend}}</p>
+					<div>
+						<p>cloned legend lvl</p>
+					<p>{{carte.cmlvllegend}}</p>
 				</div>
 			{% endif %}
 		</div>

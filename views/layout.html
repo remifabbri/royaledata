@@ -6,17 +6,15 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link href="/css/styleFront.css" rel="stylesheet">
 		<link rel="stylesheet" href="/css/bootstrap.min.css">
-		<script src="/js/jquery-3.3.1.js"></script>
-
 	</head>
 	<body>
 		<header class="navHead">
 			<a href="/">
 				<img src="/images/LogoRoyaleMetaData.png" alt="">
 			</a>
+			<span id="accessBtn"><a href="/login">LogIn</a></span>
 		</header>
 		<div class="container">
-			
 			{% block content %}{% endblock %}
 			<hr>
 		</div>
@@ -66,6 +64,50 @@
 		</footer>
 
 		<script src="/js/jquery-3.3.1.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+		<script> // SAVOIR SI L'UTILISATEUR posséde un TOKEN  
+			// equivalent to $(document).ready()
+			// http://stackoverflow.com/questions/2304941/what-is-the-non-jquery-equivalent-of-document-ready
+			(function(exports, d) {
+			    function domReady(fn, context) {
+			        function onReady(event) {
+			            d.removeEventListener("DOMContentLoaded", onReady);
+			            fn.call(context || exports, event);
+			        }
+			        function onReadyIe(event) {
+			            if (d.readyState === "complete") {
+			                d.detachEvent("onreadystatechange", onReadyIe);
+			                fn.call(context || exports, event);
+			            }
+			        }
+			        d.addEventListener && d.addEventListener("DOMContentLoaded", onReady) ||
+			        d.attachEvent      && d.attachEvent("onreadystatechange", onReadyIe);
+			    }
+			    exports.domReady = domReady;
+			})(window, document);
+
+			domReady(function() {
+			    console.log('DOM is ready :)');
+			    
+			    var accessBtnLink = document.querySelector('#accessBtn');
+			    testUserStatus();
+			    function testUserStatus() {
+			        if(localStorage.getItem('token')) {
+			            displayLoggedInView();
+			        } else {
+			            displayLoggedOutView();
+			        }
+			    }
+			    function displayLoggedInView() {
+			        accessBtnLink.innerHTML = '<a href="/login">Déconnexion</a>';
+			    }
+			    function displayLoggedOutView() {
+			        accessBtnLink.innerHTML = '<a href="/login">Connexion</a>';          
+			    }
+			});
+		</script>
+	
 		<script>
 			$(document).ready( function () {
 				var contentCalcul = $("div[name*='contentCalculatrice']");

@@ -11,6 +11,7 @@ router.get('/', (req, res) => {
 	}); 
 });
 
+
 router.get('/new', (req, res) =>{
 	Rarity.find({}).then(raritys =>{
 		var carte = new Carte(); 
@@ -54,6 +55,7 @@ router.post('/:id?', (req, res) => {
 		carte.name = req.body.name; 
 		carte.description = req.body.description; 
 		carte.raritys = req.body.raritys;
+		carte.type = req.body.type;
 		carte.elixircost = req.body.elixircost;
 		carte.damage = req.body.damage;
 		carte.dps = req.body.dps;
