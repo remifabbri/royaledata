@@ -112,13 +112,13 @@
 		}
 
 		function makeRequestWithToken(evt){
-			evt.preventDefault(); //!
+			evt.preventDefault();
 			var page = this.id; 
 			var tokenFromStorage = localStorage.getItem('token'); 
 			var config = {}; 
 
 			if(tokenFromStorage){
-				config.headers = {'Authorization': 'Bearer' + JSON.parse(tokenFromStorage)}
+				config.headers = {'Authorization': 'Bearer ' + JSON.parse(tokenFromStorage)}
 			}
 
 			axios.get(

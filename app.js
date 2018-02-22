@@ -34,7 +34,9 @@ app.use('/', express.static(__dirname + '/public'));
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
 
-app.use(expressJwt({secret: secret}).unless({path: ['/', '/login']})); 
+app.use(expressJwt({secret: secret}).unless({path: ['/','/:id', '/login']}));
+
+
 
 app.use('/', require('./routes/communs')); 
 app.use('/', require('./routes/cartes')); 
