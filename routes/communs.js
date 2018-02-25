@@ -7,6 +7,7 @@ const secret = 'ZoYM9ngXUDP9aQplZLsBcUvWhm7qNZ4vbdqUzzlvqnRJnbWEMQ0PFftRvLzr6eJ'
  
 const fakeUser = { email: 'testuser@email.fr', password: 'qsd'}; 
 
+
 router.get('/login', (req, res) => {
 	res.render('login.html');  
 });

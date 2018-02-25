@@ -118,7 +118,7 @@
 			var config = {}; 
 
 			if(tokenFromStorage){
-				config.headers = {'Authorization': 'Bearer ' + JSON.parse(tokenFromStorage)}
+				config.headers = {'Authorization':'Bearer' + JSON.parse(tokenFromStorage)}
 			}
 
 			axios.get(
@@ -128,6 +128,7 @@
 				console.log('success');
 				console.log(res);
 			}).catch( err => {
+				console.error("config.header: " + config.header.Autorization);
 				console.error('makeRequestWithToken err', err); 
 			}); 
 		}

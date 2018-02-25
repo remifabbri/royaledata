@@ -1,4 +1,9 @@
 var router = require('express').Router();
+const jwt = require('jsonwebtoken'); 
+const expressJwt = require('express-jwt');
+
+const secret = 'ZoYM9ngXUDP9aQplZLsBcUvWhm7qNZ4vbdqUzzlvqnRJnbWEMQ0PFftRvLzr6eJ'; 
+
 
 var Carte = require('./../models/Carte'); 
 var Rarity = require('./../models/Rarity'); 

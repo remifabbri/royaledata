@@ -14,13 +14,23 @@ var upload = multer({
 
 const jwt = require('jsonwebtoken'); 
 const expressJwt = require('express-jwt');
-
 const secret = 'ZoYM9ngXUDP9aQplZLsBcUvWhm7qNZ4vbdqUzzlvqnRJnbWEMQ0PFftRvLzr6eJ'; 
 
+const fakeUser = { email: 'testuser@email.fr', password: 'qsd'}; 
 
 
+//connect to the local BD
 mongoose.connect('mongodb://localhost:27017/royaledata');
-mongoose.set('debug', true); 
+mongoose.set('debug', true);
+
+
+// connect to online DB
+//mongoose.connect('mongodb://krashgram:7blabla!@ds247058.mlab.com:47058/royaledata'); 
+//const db = mongoose.connection; 
+//db.on('error', console.error.bind(console, 'connection error: cannot connect to my DB'));
+//db.once('open',() => {
+	//console.log('connected to the DB :)');
+//});
 
 require('./models/Carte'); 
 require('./models/Rarity');
@@ -34,7 +44,7 @@ app.use('/', express.static(__dirname + '/public'));
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
 
-app.use(expressJwt({secret: secret}).unless({path: ['/','/:id', '/login']}));
+app.use(expressJwt({secret: secret}).unless({path: ['/', '/login', new RegExp('/edit.*/', 'i')]}));
 
 
 
