@@ -83,6 +83,22 @@ a:hover{
 
 }
 
+
+.btnCarteSwitch{
+	display: none; 
+	width: 1OOpx;
+	padding: 5px; 
+	font-size: 12px;	 
+}
+
+.carteJs:hover{
+	.btnCarteSwitch{
+		display: block; 
+	}
+}
+
+
+
 .carteMoz{
 	display: none; 
 	width: 100px;
