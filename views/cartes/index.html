@@ -18,7 +18,7 @@
 			{% for raritys, cartes in cartes | groupby("raritys") %}
 				{% for elixircost, cartes in cartes | groupby("elixircost") %}
 					{% for p in cartes %}
-						<a href="/{{p._id}}" class="draggable carteJs">
+						<a href="/{{p._id}}" class="draggable carteJs" onmouseover="hover()">
 							<div class="compImgElixir">
 								<p class="elixirCostMini">{{p.elixircost}}</p>
 								<img src="/uploads/{{p.picture}}" alt="{{p.name}}" style="width:100px;">
@@ -32,14 +32,20 @@
 	</div>
 
 	<script>
-		var deck = document.getElementById('viewDeck');
-		var carteDeck = deck.getElementsByClassName('carteJs');
+		$(document).ready(function () {
+			var deck = document.getElementById('viewDeck');
+			var carteDeck = deck.getElementsByClassName('carteJs');
 
-		var viewCarte = document.getElementById('viewCarte');
-		var carte = viewCarte.getElementsByClassName('carteJs');
+			var viewCarte = document.getElementById('viewCarte');
+			var carte = viewCarte.getElementsByClassName('carteJs');
 
-		 
-		
+			function hover(x){ 
+				var btn = x.getElementsByClassName('btnCarteSwitch'); 
+				btn.style.display = 'block';  
+				console.log(x); 
+				
+			};	
+		}); 
 
 
 		console.log(carte);  
