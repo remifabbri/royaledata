@@ -1,29 +1,21 @@
 {% extends "layout.html" %}
 
 {% block content %}
-	<h2>Deck Stat Builder</h2>
-	<div id="viewDeck" class="contentDeck">
-		
-	</div>
 
-	<div id="draggable" style="height:50px; width:50px; background-color:black;" class="draggable">
-		
-	</div>
-	<h2>Cartes</h2>
-	<a href="/new" id="accessBtn" class="btn btn-primary">Ajouter une carte</a>
+	<h2>Flux</h2>
+	<a href="/new" id="accessBtn" class="btn btn-primary">Ajouter un Evenement</a>
 	<hr>
-	<div id="viewCarte" class="viewCarte">
-		{% for type, cartes in cartes | groupby("type") %}
+	<div id="viewEventSociety" class="viewCarte">
+		{% for type, eventSociety in eventSociety | groupby("type") %}
 			<div style="width: 100%; height: 5px;"></div>
-			{% for raritys, cartes in cartes | groupby("raritys") %}
-				{% for elixircost, cartes in cartes | groupby("elixircost") %}
-					{% for p in cartes %}
+			{% for raritys, eventSociety in eventSociety | groupby("raritys") %}
+				{% for elixircost, eventSociety in eventSociety | groupby("elixircost") %}
+					{% for p in eventSociety %}
 						<a href="/{{p._id}}" class="draggable carteJs" onmouseover="hover()">
 							<div class="compImgElixir">
 								<p class="elixirCostMini">{{p.elixircost}}</p>
 								<img src="/uploads/{{p.picture}}" alt="{{p.name}}" style="width:100px;">
 							</div>
-							<button class="btnCarteSwitch">Switch On Deck</button>
 						</a>
 					{% endfor%}	
 				{% endfor %}
@@ -31,23 +23,4 @@
 		{% endfor %}
 	</div>
 
-	<script>
-		$(document).ready(function () {
-			var deck = document.getElementById('viewDeck');
-			var carteDeck = deck.getElementsByClassName('carteJs');
-
-			var viewCarte = document.getElementById('viewCarte');
-			var carte = viewCarte.getElementsByClassName('carteJs');
-
-			function hover(x){ 
-				var btn = x.getElementsByClassName('btnCarteSwitch'); 
-				btn.style.display = 'block';  
-				console.log(x); 
-				
-			};	
-		}); 
-
-
-		console.log(carte);  
-	</script>
 {% endblock %}
