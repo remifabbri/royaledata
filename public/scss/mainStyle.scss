@@ -1,98 +1,4 @@
 
-.navHead{
-	background-color: black !important;
-}
-
-
-
-h2{
-	color:white; 
-}
-
-html{
-	height: 100%; 
-}
-
-body{
-	height: 100%; 
-	/*cursor: url(/images/cursorRoyaleData.png) 2 2, pointer;*/
-	background-image: url(/images/backgroundRMD.png);
-	background-attachment: fixed; 
-	background-position: center; 
-	background-size: cover;
-
-}
-
-
-.logoLayout{
-	height: 45px; 
-	width: 45px; 
-}
-
-
-.contentDeck{
-	height: 300px;
-	width: 550px;
-	margin: 0 auto;  
-	background-image: url(/images/woodback.JPG);
-	background-size: cover; 
-	background-position: center; 
-
-	display: flex;
-	flex-flow: row wrap;
-	justify-content: center; 
-
-
-	border-radius: 10px;
-	box-shadow: 5px 5px 25px 0px rgba(0,0,0,0.5); 
-	padding: 15px;  
-}
-.contentDeck .droppable{
-	height: 117px;
-	width: 100px;
-	box-shadow: inset 1px 1px 10px 0px rgba(0,0,0,0.5); 
-	margin: 10px; 
-}
-
-@font-face {
- font-family: "clashfont";
- src: url("/fonts/Clash-Regular.otf") format("opentype"); 
-}
-
-@font-face {
- font-family: "clashfont";
- font-weight: bold; 
- src: url("/fonts/Clash-Bold.otf") format("opentype"); 
-}
-
-
-.container{
-	padding-top: 75px; 
-}
-
-
-a:hover{
-	text-decoration: none !important;
-}
-
-
-.navHead{
-	position: fixed;
-	top: 0;
-	display: flex; 
-	flex-flow: row nowrap;
-	justify-content: space-between;
-	align-items: center; 
-	width: 100%; 
-	height: 75px;
-	background-color: rgba(255, 255, 255, 0.8); 
-	box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.2);  
-}
-
-.navHead img{
-	height: 65px;
-	width: auto;
-}
 
 .espaceConnexion{
 	display: flex; 
@@ -108,21 +14,6 @@ a:hover{
 }
 
 
-.btnCarteSwitch{
-	display: none; 
-	width: 1OOpx;
-	padding: 5px; 
-	font-size: 12px;	 
-}
-
-.carteJs:hover{
-	
-}
-.btnCarteSwitch{
-		display: block; 
-	}
-
-
 
 .carteMoz{
 	display: none; 
@@ -133,52 +24,6 @@ a:hover{
 	color: white;
 	 
 	text-align: center; 
-}
-
-
-
-.buttonCalcul{
-	position: fixed;
-	bottom: 50px;
-	left: 50px; 
-
-	height: 50px; 
-	width: 50px; 
-
-	background-color: #2D2D2E;
-	border-radius: 10px;
-	color: white; 
-	border:none;
-}
-
-.ContentCalculatrice{
-	position: fixed;
-	bottom: 100px; 
-	left: 100px; 
-	
-	display: flex;
-	flex-flow: column nowrap; 
-
-	height: 264px;
-	width: 190px;
-	background-color: #2D2D2E;
-
-	padding: 5px;
-}
-
-.resultat input{
-	width: 100%;
-	height: 44px; 
-}
-
-.lignBtn{
-
-}
-
-.inputCalcul{
-	height: 40px;
-	width: 40px; 
-	margin: 1px; 
 }
 
 .footerLayout{

@@ -43,7 +43,7 @@ let config = {
 
   //Définition des points de de sortie
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'public/dist'),
     filename: dev ? '[name].js' : '[name][chunkhash:8].js',
     //path Devellopement : Production
     publicPath: dev ? './dist/' : './'

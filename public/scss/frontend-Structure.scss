@@ -1,0 +1,31 @@
+@font-face {
+ font-family: "clashfont";
+ src: url("/fonts/Clash-Regular.otf") format("opentype"); 
+}
+
+@font-face {
+ font-family: "clashfont";
+ font-weight: bold; 
+ src: url("/fonts/Clash-Bold.otf") format("opentype"); 
+}
+
+html{
+	height: 100%; 
+}
+
+a:hover{
+	text-decoration: none !important;
+}
+
+body{
+	height: 100%; 
+	/*cursor: url(/images/cursorRoyaleData.png) 2 2, pointer;*/
+	background-image: url(/images/backgroundRMD.png);
+	background-attachment: fixed; 
+	background-position: center; 
+	background-size: cover;
+}
+
+.container{
+	padding-top: 75px; 
+}
