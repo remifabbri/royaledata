@@ -1,27 +1,24 @@
 {% extends "layout.html" %}
 
 {% block content %}
-	<div class="row">
-		<div class="col-sm-3">
-			<div class="compImgElixir">
-				<img src="/uploads/{{eventSociety.picture}}" alt="{{eventSociety.name}}" style="width:100%;">
-				<p class="elixirCost">{{eventSociety.elixircost}}</p>
-			</div>
-			
-		</div>
-		<div class="col-sm-9">
-			<div class="longTittleCartes">
-				<h2>{{eventSociety.name}}</h2>
-				<div>
-					<p>{{eventSociety.type}}</p>
-					{% for t in eventSociety.raritys %}
-						<a href="/raritys/{{t.name}}" style="background-color: {{t.color}}" class="LabelRarity">{{t.name}}</a>
-					{% endfor %}
-				</div>
-			</div>
-			<p>{{eventSociety.description}}</p>
-			<hr>
+	<div style="background-image: url('/uploads/{{eventSociety.picture}}');" title="{{eventSociety.name}}" class="imgTitleArticle"></div>
+	<div class="contenu">
+		<h2 class="firstTitle">{{eventSociety.name}}</h2>
+		<p>{{eventSociety.description}}</p>
+	</div>	
+	
+	
 		
+		<div>
+			<p>{{eventSociety.type}}</p>
+			{% for t in eventSociety.raritys %}
+				<a href="/raritys/{{t.name}}" style="background-color: {{t.color}}" class="LabelRarity">{{t.name}}</a>
+			{% endfor %}
+		</div>
+
+		
+
+		<hr>
 			<!--{% if eventSociety.crowntowerdamage != Null %}
 				<div class="stats">
 					<img src="/images/iconDmgAreaORCrownTowerDamage.png" alt="iconCrownTowerDamage">
@@ -31,7 +28,7 @@
 					</div>	
 				</div>
 			{% endif %}-->
-		</div>	
+	
 	</div>
 	<hr>
 	<a href="/edit/{{eventSociety._id}}" class="btn btn-default">Éditer</a>

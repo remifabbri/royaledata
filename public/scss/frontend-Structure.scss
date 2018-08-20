@@ -1,16 +1,17 @@
-@font-face {
- font-family: "clashfont";
- src: url("/fonts/Clash-Regular.otf") format("opentype"); 
-}
+@import url('https://fonts.googleapis.com/css?family=Montserrat+Subrayada|Nova+Round|Poiret+One|Share+Tech+Mono|VT323|Varela+Round');
+/*
+	font-family: 'Varela Round', sans-serif;
+	font-family: 'Poiret One', cursive;
+	font-family: 'Share Tech Mono', monospace;
+	font-family: 'Montserrat Subrayada', sans-serif;
 
-@font-face {
- font-family: "clashfont";
- font-weight: bold; 
- src: url("/fonts/Clash-Bold.otf") format("opentype"); 
-}
+	font-family: 'VT323', monospace; 
+	
+*/
 
 html{
-	height: 100%; 
+	height: 100%;
+	font-family: 'Share Tech Mono', monospace;
 }
 
 a:hover{
@@ -27,5 +28,5 @@ body{
 }
 
 .container{
-	padding-top: 75px; 
+	padding-top: 100px; 
 }

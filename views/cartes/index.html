@@ -2,25 +2,22 @@
 
 {% block content %}
 
-	<h2>Flux</h2>
-	<a href="/new" id="accessBtn" class="btn btn-primary">Ajouter un Evenement</a>
+	<h2 class="titleFlux">Flux</h2>
+	<a href="/new" id="accessBtn" class="btnAction">Ajouter Evenement</a>
 	<hr>
 	<div id="viewEventSociety" class="viewCarte">
-		{% for type, eventSociety in eventSociety | groupby("type") %}
-			<div style="width: 100%; height: 5px;"></div>
-			{% for raritys, eventSociety in eventSociety | groupby("raritys") %}
-				{% for elixircost, eventSociety in eventSociety | groupby("elixircost") %}
-					{% for p in eventSociety %}
-						<a href="/{{p._id}}" class="draggable carteJs" onmouseover="hover()">
-							<div class="compImgElixir">
-								<p class="elixirCostMini">{{p.elixircost}}</p>
-								<img src="/uploads/{{p.picture}}" alt="{{p.name}}" style="width:100px;">
-							</div>
-						</a>
-					{% endfor%}	
-				{% endfor %}
-			{% endfor %}
-		{% endfor %}
+		{% for p in eventSociety %}
+			<a href="/{{p._id}}" class="carteJs" onmouseover="hover()">
+				<div class="EventFlux">
+					<img src="/uploads/{{p.picture}}" alt="{{p.name}}">
+					<div class="blockTitleDescri">
+						<h1>{{p.name}}</h1>
+						<p class="description">{{p.description}}</p>
+					</div>
+					
+				</div>
+			</a>
+		{% endfor%}	
 	</div>
 
 {% endblock %}
