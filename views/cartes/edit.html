@@ -3,219 +3,27 @@
 {% block content %}
 
 	<form method="POST" action="{{endpoint}}" enctype="multipart/form-data">
-		<h2>EDIT</h2>
+		<h2 class="titleFlux">EDIT</h2>
 
 		<div class="form-group">
 			<label for="name" class="labelEdit">Nom de la carte</label>
-			<input type="text" id="name" name="name" class="form-control" value="{{carte.name}}">
+			<input type="text" id="name" name="name" class="form-control" value="{{eventSociety.name}}">
 		</div>
 
 		<div class="form-group">
 			<label for="name" class="labelEdit">Description carte</label>
-			<textarea type="text" id="description" name="description" class="form-control">{{carte.description}}</textarea>
+			<textarea type="text" id="description" name="description" class="form-control">{{eventSociety.description}}</textarea>
 		</div>
 
 		<div class="form-group">
 			<label for="name" class="labelEdit">Elixir Cost</label>
-			<textarea type="number" id="elixircost" name="elixircost" class="form-control">{{carte.elixircost}}</textarea>
+			<textarea type="number" id="elixircost" name="elixircost" class="form-control">{{eventSociety.elixircost}}</textarea>
 		</div>
 		<div class="form-group">
 			<label for="name" class="labelEdit">Type</label>
-			<textarea type="text" id="type" name="type" class="form-control">{{carte.type}}</textarea>
+			<textarea type="text" id="type" name="type" class="form-control">{{eventSociety.type}}</textarea>
 		</div>
 
-		<div class="form-group">
-			<div>
-				<img src="/images/iconHitPoints.png" alt="iconHitpoints" class="imgEdit">
-				<label for="name" class="labelEdit">hitPoints</label>
-			</div>
-			<textarea type="number" id="hitpoints" name="hitpoints" class="form-control">{{carte.hitpoints}}</textarea>
-		</div>
-
-		<div class="form-group">
-			<div>
-				<img src="/images/iconDamage.png" alt="iconDamage" class="imgEdit">
-				<label for="name" class="labelEdit">Damage</label>
-			</div>
-			<textarea type="number" id="damage" name="damage" class="form-control">{{carte.damage}}</textarea>
-		</div>
-
-		<div class="form-group">
-			<div>
-				<img src="/images/iconDamage.png" alt="iconDamage" class="imgEdit">
-				<label for="name" class="labelEdit">Area Damage</label>
-			</div>	
-			<textarea type="number" id="areadamage" name="areadamage" class="form-control">{{carte.areadamage}}</textarea>
-		</div>
-
-		<div class="form-group">
-			<div>
-				<img src="/images/iconDmgAreaORCrownTowerDamage.png" alt="iconCrownTowerDamage" class="imgEdit">
-				<label for="name" class="labelEdit">Crown Tower Damage</label>
-			</div>
-			<textarea type="number" id="crowntowerdamage" name="crowntowerdamage" class="form-control">{{carte.crowntowerdamage}}</textarea>
-		</div>
-
-		<div class="form-group">
-			<div>
-				<img src="/images/iconDPS.png" alt="iconDPS" class="imgEdit">
-				<label for="name" class="labelEdit">DPS</label>
-			</div>
-			<textarea type="number" id="dps" name="dps" class="form-control">{{carte.dps}}</textarea>
-		</div>
-
-		<div class="form-group">
-			<div>
-				<img src="/images/iconSpeed.png" alt="iconSpeed" class="imgEdit">
-				<label for="name" class="labelEdit">Speed</label>
-			</div>
-			<input type="text" id="speed" name="speed" class="form-control" value="{{carte.speed}}">
-		</div>
-
-		<div class="form-group">
-			<div>
-				<img src="/images/iconRange.png" alt="iconRange" class="imgEdit">
-				<label for="name" class="labelEdit">Range</label>
-			</div>
-			<input type="number" id="range" name="range" class="form-control" value="{{carte.range}}">
-		</div>
-
-		<div class="form-group">
-			<div>
-				<img src="/images/iconHealing.png" alt="iconHealing" class="imgEdit">
-				<label for="name" class="labelEdit">Healing</label>
-			</div>
-			<input type="number" id="healing" name="healing" class="form-control" value="{{carte.healing}}">
-		</div>
-
-		<div class="form-group">
-			<div>
-				<img src="/images/iconRadius.png" alt="iconRadius" class="imgEdit">
-				<label for="name" class="labelEdit">Radius</label>
-			</div>
-			<textarea type="number" id="radius" name="radius" class="form-control">{{carte.radius}}</textarea>
-		</div>
-
-		<div class="form-group">
-			<div>
-				<img src="/images/iconFreezeStun.png" alt="iconfreezeduration" class="imgEdit">
-				<label for="name" class="labelEdit">Freeze Duration</label>
-			</div>
-			<textarea type="number" id="freezeduration" name="freezeduration" class="form-control">{{carte.freezeduration}}</textarea>
-		</div>
-
-		<div class="form-group">
-			<div>
-				<img src="/images/iconFreezeStun.png" alt="iconstunduration" class="imgEdit">
-				<label for="name" class="labelEdit">Stun Duration</label>
-			</div>
-			<textarea type="number" id="stunduration" name="stunduration" class="form-control">{{carte.stunduration}}</textarea>
-		</div>
-		<div class="form-group">
-			<div>
-				<img src="/images/iconDeploy.png" alt="iconDuration" class="imgEdit">
-				<label for="name" class="labelEdit">Duration</label>
-			</div>
-			<textarea type="number" id="duration" name="duration" class="form-control">{{carte.duration}}</textarea>
-		</div>
-		<div class="form-group">
-			<div>
-				<img src="/images/iconTargets.png" alt="iconTargets" class="imgEdit">
-				<label for="name" class="labelEdit">Targets</label>
-			</div>
-			<input type="text" id="targets" name="targets" class="form-control" value="{{carte.targets}}">
-		</div>
-		<div class="form-group">
-			<div>
-				<img src="/images/iconCount.png" alt="iconCount" class="imgEdit">
-				<label for="name" class="labelEdit">Count</label>
-			</div>
-			<input type="number" id="howmuch" name="howmuch" class="form-control" value="{{carte.howmuch}}">
-		</div>
-		<div class="form-group">
-			<div>
-				<img src="/images/iconDeploy.png" alt="iconSpawnSpeed" class="imgEdit">
-				<label for="name" class="labelEdit">Spawn Speed</label>
-			</div>
-			<input type="number" id="spawnspeed" name="spawnspeed" class="form-control" value="{{carte.spawnspeed}}">
-		</div>
-		<div class="form-group">
-			<div>
-				<img src="/images/iconDeploy.png" alt="iconLifetime" class="imgEdit">
-				<label for="name" class="labelEdit">Life Time</label>	
-			</div>
-			<input type="number" id="lifetime" name="lifetime" class="form-control" value="{{carte.lifetime}}">
-		</div>
-		<div class="form-group">
-			<div>
-				<img src="/images/iconboost.png" alt="iconboost" class="imgEdit">
-				<label for="name" class="labelEdit">Boost</label>
-			</div>
-			<input type="number" id="boost" name="boost" class="form-control" value="{{carte.boost}}">
-		</div>
-		<div class="form-group">
-			<div>
-				<img src="/images/iconshieldhitpoints.png" alt="iconshieldhitpoints" class="imgEdit">
-				<label for="name" class="labelEdit">Shield HitPoints</label>
-			</div>
-			<input type="number" id="shieldhitpoints" name="shieldhitpoints" class="form-control" value="{{carte.shieldhitpoints}}">
-		</div>
-		<div class="form-group">
-			<div>
-				<img src="/images/icondeathdamage.png" alt="icondeathdamage" class="imgEdit">
-				<label for="name" class="labelEdit">Death Damage</label>
-			</div>
-			<input type="number" id="deathdamage" name="deathdamage" class="form-control" value="{{carte.deathdamage}}">
-		</div>
-		<div class="form-group">
-			<div>
-				<img src="/images/iconDashRange.png" alt="icondashrange" class="imgEdit">
-				<label for="name" class="labelEdit">Dash Range</label>
-			</div>
-			<input type="number" id="dashrange" name="dashrange" class="form-control" value="{{carte.dashrange}}">
-		</div>
-		<div class="form-group">
-			<div>
-				<img src="/images/iconDashDamage.png" alt="icondashdamage" class="imgEdit">
-				<label for="name" class="labelEdit">Dash Damage</label>
-			</div>
-			<input type="number" id="dashdamage" name="dashdamage" class="form-control" value="{{carte.dashdamage}}">
-		</div>
-		<div class="form-group">
-			<div>
-				<img src="/images/iconDeploy.png" alt="iconDeploy" class="imgEdit">
-				<label for="name" class="labelEdit">Deploy</label>
-			</div>
-			<input type="number" id="deploy" name="deploy" class="form-control" value="{{carte.deploy}}">
-		</div>
-		<div class="form-group">
-			<div>
-				<img src="/images/iconcmlvlcommon.png" alt="iconcmlvlcommon" class="imgEdit">
-				<label for="name" class="labelEdit">LVL Troop Common</label>
-			</div>
-			<input type="number" id="cmlvlcommon" name="cmlvlcommon" class="form-control" value="{{carte.cmlvlcommon}}">
-		</div>
-		<div class="form-group">
-			<div>
-				<img src="/images/iconcmlvlrare.png" alt="iconcmlvlrare" class="imgEdit">
-				<label for="name" class="labelEdit">cmlvlrare</label>
-			</div>
-			<input type="number" id="cmlvlrare" name="cmlvlrare" class="form-control" value="{{carte.cmlvlrare}}">
-		</div>
-		<div class="form-group">
-			<div>
-				<img src="/images/iconcmlvlepic.png" alt="iconcmlvlepic" class="imgEdit">
-				<label for="name" class="labelEdit">cmlvlepic</label>
-			</div>
-			<input type="number" id="cmlvlepic" name="cmlvlepic" class="form-control" value="{{carte.cmlvlepic}}">
-		</div>
-		<div class="form-group">
-			<div>
-				<img src="/images/iconcmlvllegend.png" alt="iconcmlvllegend" class="imgEdit">
-				<label for="name" class="labelEdit">cmlvllegend</label>
-			</div>
-			<input type="number" id="cmlvllegend" name="cmlvllegend" class="form-control" value="{{carte.cmlvllegend}}">
-		</div>
 		<div class="form-group">
 			<label for="file">Image</label>
 			<input type="file" id="file" name="file">
@@ -223,7 +31,7 @@
 		<div class="form-group">
 			{% for rarity in raritys %}
 			<label for="">
-				<input type="checkbox" name="raritys[]" value="{{rarity._id}}" {% if carte.raritys.indexOf(rarity._id) != -1 %}checked{% endif %} >
+				<input type="checkbox" name="raritys[]" value="{{rarity._id}}" {% if eventSociety.raritys.indexOf(rarity._id) != -1 %}checked{% endif %} >
 				{{rarity.name}}
 			</label>
 			{% endfor %}

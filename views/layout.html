@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<title>ROYALE DATA</title>
+		<title>DS</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link href="/css/styleFront.css" rel="stylesheet">
+		<!--<link href="/css/styleFront.css" rel="stylesheet">-->
 		<link rel="stylesheet" href="/css/bootstrap.min.css">
 		<link rel="icon" href="data:;base64,=">
+		<script src="/dist/bundleFrontend.js"></script>
 	</head>
 	<body>
 		<header class="navHead">
 			<a href="/">
-				<img src="/images/LogoRoyaleMetaData.png" alt="">
+				<div class="backImg"></div>
+				<img src="/images/logo.png" alt="" class="logoLayout">
 			</a>
 			<span id="accessBtn"><a href="/login">LogIn</a></span>
 		</header>
@@ -20,52 +22,13 @@
 			<hr>
 		</div>
 
-		<button name="btnCalculatrice" class="buttonCalcul">
-			+/*-
-		</button>
-		<div name="contentCalculatrice" class="ContentCalculatrice">
-			<div class="resultat">
-				<input type="text">
-			</div>
-			<div class="lignBtn">
-				<input type="button" class="inputCalcul" value="CE">
-				<input type="button" class="inputCalcul" value="&larr;">
-				<input type="button" class="inputCalcul" value="%">
-				<input type="button" class="inputCalcul" value="+">
-			</div>
-			<div class="lignBtn">
-				<input type="button" class="inputCalcul" value="7">
-				<input type="button" class="inputCalcul" value="8">
-				<input type="button" class="inputCalcul" value="9">
-				<input type="button" class="inputCalcul" value="-">
-			</div>
-			<div class="lignBtn">
-				<input type="button" class="inputCalcul" value="4">
-				<input type="button" class="inputCalcul" value="5">
-				<input type="button" class="inputCalcul" value="6">
-				<input type="button" class="inputCalcul" value="x">
-			</div>
-			<div class="lignBtn">
-				<input type="button" class="inputCalcul" value="1">
-				<input type="button" class="inputCalcul" value="2">
-				<input type="button" class="inputCalcul" value="3">
-				<input type="button" class="inputCalcul" value="&divide;">
-			</div>
-			<div class="lignBtn">
-				<input type="button" class="inputCalcul" value="&plusmn;">
-				<input type="button" class="inputCalcul" value="0">
-				<input type="button" class="inputCalcul" value=",">
-				<input type="button" class="inputCalcul" value="=">
-			</div>
-			
-		</div>
-
 		<footer class="footerLayout">
 		
 		</footer>
 
 		<script src="/js/jquery-3.3.1.js"></script>
 		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		
 
 		<script> // SAVOIR SI L'UTILISATEUR posséde un TOKEN  
 			// equivalent to $(document).ready()
@@ -109,19 +72,6 @@
 			});
 			
 		</script>
-	
-		<script>
-			$(document).ready( function () {
-				var contentCalcul = $("div[name*='contentCalculatrice']");
-				var btnCalcul = $("button[name*='btnCalculatrice']");
-				var curopen = 0; 
-
-				$(contentCalcul).hide();
-				
-				$(btnCalcul).click(function(){
-						$(contentCalcul).fadeToggle(); 
-				}); 
- 			}); 
-		</script>
+		
 	</body>
 </html>

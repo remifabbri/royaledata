@@ -1,62 +1,23 @@
 {% extends "layout.html" %}
 
 {% block content %}
-	<h2>Deck Stat Builder</h2>
-	<div class="contentDeck">
-		<div class="droppable">
-			
-		</div>
-		<div class="droppable">
-			
-		</div>
-		<div class="droppable">
-			
-		</div>
-		<div class="droppable">
-			
-		</div>
-		<div class="droppable">
-			
-		</div>
-		<div class="droppable">
-			
-		</div>
-		<div class="droppable">
-			
-		</div>
-		<div class="droppable">
-			
-		</div>
-	</div>
 
-	<div id="draggable" style="height:50px; width:50px; background-color:black;" class="draggable">
-		
-	</div>
-	<h2>Cartes</h2>
-	<a href="/new" id="accessBtn" class="btn btn-primary">Ajouter une carte</a>
+	<h2 class="titleFlux">Flux</h2>
+	<a href="/new" id="accessBtn" class="btnAction">Ajouter Evenement</a>
 	<hr>
-	<div class="viewCarte">
-		{% for type, cartes in cartes | groupby("type") %}
-			<div style="width: 100%; height: 5px;"></div>
-			{% for raritys, cartes in cartes | groupby("raritys") %}
-				{% for elixircost, cartes in cartes | groupby("elixircost") %}
-					{% for p in cartes %}
-						<a href="/{{p._id}}" class="draggable">
-							<div class="compImgElixir">
-								<p class="elixirCostMini">{{p.elixircost}}</p>
-								<img src="/uploads/{{p.picture}}" alt="{{p.name}}" style="width:100px;">
-							</div>
-						</a>
-					{% endfor%}	
-				{% endfor %}
-			{% endfor %}
-		{% endfor %}
+	<div id="viewEventSociety" class="viewCarte">
+		{% for p in eventSociety %}
+			<a href="/{{p._id}}" class="carteJs" onmouseover="hover()">
+				<div class="EventFlux">
+					<img src="/uploads/{{p.picture}}" alt="{{p.name}}">
+					<div class="blockTitleDescri">
+						<h1>{{p.name}}</h1>
+						<p class="description">{{p.description}}</p>
+					</div>
+					
+				</div>
+			</a>
+		{% endfor%}	
 	</div>
 
-	<script>
-		$(document).ready( function () {
-			$('#draggable').draggable(); 
-			$('.droppable').droppable();
-		}); 
-	</script>
 {% endblock %}

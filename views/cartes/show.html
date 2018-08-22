@@ -1,281 +1,37 @@
 {% extends "layout.html" %}
 
 {% block content %}
-	<div class="row">
-		<div class="col-sm-3">
-			<div class="compImgElixir">
-				<img src="/uploads/{{carte.picture}}" alt="{{carte.name}}" style="width:100%;">
-				<p class="elixirCost">{{carte.elixircost}}</p>
-			</div>
-			
+	<div style="background-image: url('/uploads/{{eventSociety.picture}}');" title="{{eventSociety.name}}" class="imgTitleArticle"></div>
+	<div class="contenu">
+		<h2 class="firstTitle">{{eventSociety.name}}</h2>
+		<p>{{eventSociety.description}}</p>
+	</div>	
+	
+	
+		
+		<div>
+			<p>{{eventSociety.type}}</p>
+			{% for t in eventSociety.raritys %}
+				<a href="/raritys/{{t.name}}" style="background-color: {{t.color}}" class="LabelRarity">{{t.name}}</a>
+			{% endfor %}
 		</div>
-		<div class="col-sm-9">
-			<div class="longTittleCartes">
-				<h2>{{carte.name}}</h2>
-				<div>
-					<p>{{carte.type}}</p>
-					{% for t in carte.raritys %}
-						<a href="/raritys/{{t.name}}" style="background-color: {{t.color}}" class="LabelRarity">{{t.name}}</a>
-					{% endfor %}
-				</div>
-			</div>
-			<p>{{carte.description}}</p>
-			<hr>
-			{% if carte.hitpoints != Null %}
-				<div class="stats">
-					<img src="/images/iconHitPoints.png" alt="iconHitpoints">
-					<div>
-						<p>Hit Points</p>
-						<p>{{carte.hitpoints}}</p>
-					</div>
-				</div>
-			{% endif %}
-			{% if carte.damage != Null %}
-				<div class="stats">
-					<img src="/images/iconDamage.png" alt="iconDamage">
-					<div>
-						<p>Damage</p>
-						<p>{{carte.damage}}</p>
-					</div>
-				</div>
-			{% endif %}
-			{% if carte.areadamage != Null %}
-				<div class="stats">
-					<img src="/images/iconDamage.png" alt="iconareadamage">
-					<div>
-						<p>Area Damage</p>
-						<p>{{carte.areadamage}}</p>
-					</div>
-				</div>
-			{% endif %}
-			{% if carte.crowntowerdamage != Null %}
+
+		
+
+		<hr>
+			<!--{% if eventSociety.crowntowerdamage != Null %}
 				<div class="stats">
 					<img src="/images/iconDmgAreaORCrownTowerDamage.png" alt="iconCrownTowerDamage">
 					<div>
 						<p>Crown Tower Damage</p>
-						<p>{{carte.crowntowerdamage}}</p>
+						<p>{{eventSociety.crowntowerdamage}}</p>
 					</div>	
 				</div>
-			{% endif %}
-			{% if carte.dps != Null %}
-				<div class="stats">
-					<img src="/images/iconDPS.png" alt="iconDPS">
-					<div>
-						<p>Damage per second</p>
-						<p>{{carte.dps}}</p>
-					</div>	
-				</div>
-			{% endif %}
-			{% if carte.dps != Null and carte.damage != Null %}
-				<div class="stats">
-					<img src="/images/iconHitSpeed.png" alt="iconHitpoints">
-					<div>
-						<p> Hit Speed</p>
-						<p>{{(carte.damage/carte.dps) | round(1)}}sec</p>
-					</div>	
-				</div>
-			{% endif %}
-			{% if carte.dps != Null and carte.areadamage != Null %}
-				<div class="stats">
-					<img src="/images/iconHitSpeed.png" alt="iconHitpoints">
-					<div>
-						<p>Area Damage</p>
-						<p>{{(carte.areadamage/carte.dps) | round(1)}}sec</p>
-					</div>	
-				</div>
-			{% endif %}
-			{% if carte.speed != "" %}
-				<div class="stats">
-					<img src="/images/iconSpeed.png" alt="iconSpeed">
-					<div>
-						<p>Speed</p>
-						<p>{{carte.speed}}</p>
-					</div>
-				</div>
-			{% endif %}
-			{% if carte.range != Null %}
-				<div class="stats">
-					<img src="/images/iconRange.png" alt="iconRange">
-					<div>
-						<p>Range</p>
-						<p>{{carte.range}}</p>
-					</div>
-				</div>
-			{% endif %}
-			{% if carte.healing != Null %}
-				<div class="stats">
-					<img src="/images/iconHealing.png" alt="iconHealing">
-					<div>
-						<p>Healing/sec</p>
-						<p>{{carte.healing}}/sec</p>
-					</div>	
-				</div>
-			{% endif %}
-			{% if carte.duration != Null %}
-				<div class="stats">
-					<img src="/images/iconDeploy.png" alt="iconDuration">
-					<div>
-						<p>Duration</p>
-						<p>{{carte.duration}}sec</p>
-					</div>
-				</div>
-			{% endif %}
-			{% if carte.radius != Null %}
-				<div class="stats">
-					<img src="/images/iconRadius.png" alt="iconRadius">
-					<div>
-						<p>Radius</p>
-						<p>{{carte.radius}}</p>
-					</div>
-				</div>
-			{% endif %}
-			{% if carte.freezeduration != Null %}
-				<div class="stats">
-					<img src="/images/iconFreezeStun.png" alt="iconfreezeduration">
-					<div>
-						<p>Freeze Duration</p>
-						<p>{{carte.freezeduration}}sec</p>
-					</div>
-				</div>
-			{% endif %}
-			{% if carte.stunduration != Null %}
-				<div class="stats">
-					<img src="/images/iconFreezeStun.png" alt="iconstunduration">
-					<div>
-						<p>Stun Duration</p>
-						<p>{{carte.stunduration}}sec</p>
-					</div>
-				</div>
-			{% endif %}
-			{% if carte.targets != "" %}
-				<div class="stats">
-					<img src="/images/iconTargets.png" alt="iconTargets">
-					<div>
-						<p>Targets</p>
-						<p>{{carte.targets}}</p>
-					</div>
-				</div>
-			{% endif %}
-			{% if carte.howmuch != Null %}
-				<div class="stats">
-					<img src="/images/iconCount.png" alt="iconCount">
-					<div>
-						<p>Count</p>
-						<p>{{carte.howmuch}}</p>
-					</div>
-				</div>
-			{% endif %}
-			{% if carte.spawnspeed != Null %}
-				<div class="stats">
-					<img src="/images/iconDeploy.png" alt="iconSpawnSpeed">
-					<div>
-						<p>Spawn Speed</p>
-						<p>{{carte.spawnspeed}}sec</p>
-					</div>
-				</div>
-			{% endif %}
-			{% if carte.lifetime != Null %}
-				<div class="stats">
-					<img src="/images/iconDeploiement.png" alt="iconLifetime">
-					<div>
-						<p>Life Time</p>
-						<p>{{carte.lifetime}}sec</p>
-					</div>	
-				</div>
-			{% endif %}
-			{% if carte.boost != Null %}
-				<div class="stats">
-					<img src="/images/iconboost.png" alt="iconboost">
-					<div>
-						<p>Bosst</p>
-						<p>+{{carte.boost}}%</p>
-					</div>	
-				</div>
-			{% endif %}
-			{% if carte.shieldhitpoints != Null %}
-				<div class="stats">
-					<img src="/images/iconshieldhitpoints.png" alt="iconshieldhitpoints">
-					<div>
-						<p>Shield HitPoints</p>
-						<p>{{carte.shieldhitpoints}}</p>
-					</div>	
-				</div>
-			{% endif %}
-			{% if carte.deathdamage != Null %}
-				<div class="stats">
-					<img src="/images/icondeathdamage.png" alt="icondeathdamage">
-					<div>
-						<p>Death Damage</p>
-						<p>{{carte.deathdamage}}</p>
-					</div>	
-				</div>
-			{% endif %}
-			{% if carte.dashrange != Null %}
-				<div class="stats">
-					<img src="/images/iconDashRange.png" alt="icondashrange">
-					<div>
-						<p>Dash Range</p>
-						<p>{{carte.dashrange}}</p>
-					</div>	
-				</div>
-			{% endif %}
-			{% if carte.dashdamage != Null %}
-				<div class="stats">
-					<img src="/images/iconDashDamage.png" alt="icondashdamage">
-					<div>
-						<p>Dash Damage</p>
-						<p>{{carte.dashdamage}}</p>
-					</div>	
-				</div>
-			{% endif %}
-			{% if carte.deploy != Null %}
-				<div class="stats">
-					<img src="/images/iconDeploy.png" alt="iconDeploy">
-					<div>
-						<p>Deploy</p>
-						<p>{{carte.deploy}}sec</p>
-					</div>	
-				</div>
-			{% endif %}
-			{% if carte.cmlvlcommon != Null %}
-				<div class="stats">
-					<img src="/images/iconcmlvlcommon.png" alt="iconcmlvlcommon">
-					<div>
-						<p>Cloned common lvl</p>
-						<p>{{carte.cmlvlcommon}}</p>
-					</div>	
-				</div>
-			{% endif %}
-			{% if carte.cmlvlrare != Null %}
-				<div class="stats">
-					<img src="/images/iconcmlvlrare.png" alt="iconcmlvlrare">
-					<div>
-						<p>Cloned rare lvl</p>
-						<p>{{carte.cmlvlrare}}</p>
-					</div>	
-				</div>
-			{% endif %}
-			{% if carte.cmlvlepic != Null %}
-				<div class="stats">
-					<img src="/images/iconcmlvlepic.png" alt="iconcmlvlepic">
-					<div>
-						<p>Cloned epic</p>
-						<p>{{carte.cmlvlepic}}</p>
-					</div>	
-				</div>
-			{% endif %}
-			{% if carte.cmlvllegend != Null %}
-				<div class="stats">
-					<img src="/images/iconcmlvllegend.png" alt="iconcmlvllegend">
-					<div>
-						<p>cloned legend lvl</p>
-					<p>{{carte.cmlvllegend}}</p>
-				</div>
-			{% endif %}
-		</div>
+			{% endif %}-->
+	
 	</div>
 	<hr>
-	<a href="/edit/{{carte._id}}" class="btn btn-default">Éditer</a>
-	<a href="/delete/{{carte._id}}" class="btn btn-danger">Supprimer</a>
+	<a href="/edit/{{eventSociety._id}}" class="btn btn-default">Éditer</a>
+	<a href="/delete/{{eventSociety._id}}" class="btn btn-danger">Supprimer</a>
 
 {% endblock %}

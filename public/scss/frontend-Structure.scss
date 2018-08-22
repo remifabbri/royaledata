@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat+Subrayada|Nova+Round|Poiret+One|Share+Tech+Mono|VT323|Varela+Round');
+/*
+	font-family: 'Varela Round', sans-serif;
+	font-family: 'Poiret One', cursive;
+	font-family: 'Share Tech Mono', monospace;
+	font-family: 'Montserrat Subrayada', sans-serif;
+
+	font-family: 'VT323', monospace; 
+	
+*/
+
+html{
+	height: 100%;
+	font-family: 'Share Tech Mono', monospace;
+}
+
+a:hover{
+	text-decoration: none !important;
+}
+
+body{
+	height: 100%; 
+	/*cursor: url(/images/cursorRoyaleData.png) 2 2, pointer;*/
+	background-image: url(/images/backgroundRMD.png);
+	background-attachment: fixed; 
+	background-position: center; 
+	background-size: cover;
+}
+
+.container{
+	padding-top: 100px; 
+}

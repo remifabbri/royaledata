@@ -12,11 +12,12 @@ var upload = multer({
 	dest: __dirname + '/uploads'
 }); 
 
+/*
 const jwt = require('jsonwebtoken'); 
 const expressJwt = require('express-jwt');
 const secret = 'ZoYM9ngXUDP9aQplZLsBcUvWhm7qNZ4vbdqUzzlvqnRJnbWEMQ0PFftRvLzr6eJ'; 
 
-const fakeUser = { email: 'testuser@email.fr', password: 'qsd'}; 
+const fakeUser = { email: 'testuser@email.fr', password: 'qsd'};*/ 
 
 
 //connect to the local BD
@@ -44,7 +45,7 @@ app.use('/', express.static(__dirname + '/public'));
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
 
-app.use(expressJwt({secret: secret}).unless({path: ['/', '/login', new RegExp('/edit.*/', 'i')]}));
+//app.use(expressJwt({secret: secret}).unless({path: ['/', '/login', new RegExp('/edit.*/', 'i')]}));
 
 
 
