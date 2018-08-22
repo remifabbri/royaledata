@@ -2,36 +2,30 @@
 
 {% block content %}
 	<div style="background-image: url('/uploads/{{eventSociety.picture}}');" title="{{eventSociety.name}}" class="imgTitleArticle"></div>
-	<div class="contenu">
-		<h2 class="firstTitle">{{eventSociety.name}}</h2>
-		<p>{{eventSociety.description}}</p>
-	</div>	
-	
-	
-		
-		<div>
-			<p>{{eventSociety.type}}</p>
-			{% for t in eventSociety.raritys %}
+		<div class="contenu">
+			<h2 class="firstTitle">{{eventSociety.name}}</h2>
+			<p>{{eventSociety.description}}</p>
+			<div>
+				<p>{{eventSociety.faits}}</p>
+				<p>{{eventSociety.type}}</p>
+				{% for t in eventSociety.raritys %}
 				<a href="/raritys/{{t.name}}" style="background-color: {{t.color}}" class="LabelRarity">{{t.name}}</a>
-			{% endfor %}
-		</div>
-
-		
-
-		<hr>
-			<!--{% if eventSociety.crowntowerdamage != Null %}
-				<div class="stats">
-					<img src="/images/iconDmgAreaORCrownTowerDamage.png" alt="iconCrownTowerDamage">
-					<div>
-						<p>Crown Tower Damage</p>
-						<p>{{eventSociety.crowntowerdamage}}</p>
-					</div>	
-				</div>
-			{% endif %}-->
-	
+				{% endfor %}
+			</div>
+			<hr>
+			<a href="/edit/{{eventSociety._id}}" class="btn btn-default">Éditer</a>
+			<a href="/delete/{{eventSociety._id}}" class="btn btn-danger">Supprimer</a>
+		</div>	
 	</div>
-	<hr>
-	<a href="/edit/{{eventSociety._id}}" class="btn btn-default">Éditer</a>
-	<a href="/delete/{{eventSociety._id}}" class="btn btn-danger">Supprimer</a>
-
 {% endblock %}
+
+
+<!--{% if eventSociety.crowntowerdamage != Null %}
+			<div class="stats">
+				<img src="/images/iconDmgAreaORCrownTowerDamage.png" alt="iconCrownTowerDamage">
+				<div>
+					<p>Crown Tower Damage</p>
+					<p>{{eventSociety.crowntowerdamage}}</p>
+				</div>	
+			</div>
+		{% endif %}-->

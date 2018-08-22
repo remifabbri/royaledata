@@ -4,7 +4,8 @@ var eventSocietySchema = new mongoose.Schema({
 	name: String, 
 	description: String,
 	picture: String,
-	type: String, 
+	type: String,
+	faits: [],
 
 
 
