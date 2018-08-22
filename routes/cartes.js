@@ -60,7 +60,12 @@ router.post('/:id?', (req, res) => {
 		eventSociety.description = req.body.description; 
 		eventSociety.raritys = req.body.raritys;
 		eventSociety.type = req.body.type;
-		
+
+		var fait = req.body.faits;
+		var lien = req.body.lien;
+
+		var PostedFaits = {fait : fait, lien : lien};
+		eventSociety.faits.push(PostedFaits);
 
 		if (req.file) eventSociety.picture = req.file.filename; 
 
