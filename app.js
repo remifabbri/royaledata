@@ -1,65 +1,82 @@
-var express = require('express');
-var app = express();
+const express= require('express'); 
+const app = require('express')(); 
+const httpsCall = require('https'); 
+const http = require('http').Server(app);
+const io = require('socket.io')(http); 
+const PORT = process.env.PORT || 3000;
 
-var mongoose = require('mongoose'); 
-var nunjucks = require('nunjucks'); 
+const mongoose = require('mongoose');
+const db = require('./config/dbConfig').MongoURI; 
 
-var bodyParser = require('body-parser');
-var urlencodedParser = bodyParser.urlencoded({ extended: false});
+mongoose.connect(db, {useNewUrlParser:true})
+    .then(() => {
+        console.log("MongoDB OK"); 
+    })
+    .catch((err) => {
+        console.log(err); 
+    })
+
+const request = require('request');
+const bodyParser = require('body-parser'); 
+const fs = require('fs');
+const pug = require('pug'); 
+
+
 
 var multer = require('multer');
 var upload = multer({
 	dest: __dirname + '/uploads'
 }); 
 
-/*
-const jwt = require('jsonwebtoken'); 
-const expressJwt = require('express-jwt');
-const secret = 'ZoYM9ngXUDP9aQplZLsBcUvWhm7qNZ4vbdqUzzlvqnRJnbWEMQ0PFftRvLzr6eJ'; 
-
-const fakeUser = { email: 'testuser@email.fr', password: 'qsd'};*/ 
-
-
-//connect to the local BD
-mongoose.connect('mongodb://localhost:27017/royaledata');
-mongoose.set('debug', true);
-
-
-// connect to online DB
-//mongoose.connect('mongodb://krashgram:7blabla!@ds247058.mlab.com:47058/royaledata'); 
-//const db = mongoose.connection; 
-//db.on('error', console.error.bind(console, 'connection error: cannot connect to my DB'));
-//db.once('open',() => {
-	//console.log('connected to the DB :)');
-//});
-
-require('./models/Carte'); 
-require('./models/Rarity');
-
-
-app.use(bodyParser.urlencoded()); 
-app.use(upload.single('file')); 
+app.use(express.urlencoded({ extended: false}));
+app.use(bodyParser.json()) 
+// app.use(upload.single('file')); 
 
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css')); 
 app.use('/', express.static(__dirname + '/public'));
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
+app.set('view engine', 'pug');
+app.set('views', './viewsPug');
 
-//app.use(expressJwt({secret: secret}).unless({path: ['/', '/login', new RegExp('/edit.*/', 'i')]}));
+let URLAPI = "https://api.clashroyale.com/v1/clans/%23RYYRLV"; 
+let options = {
+    headers: {
+         'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6Ijg1Y2QwNWM2LTE3OWYtNDZiYy04YzM3LWFjODU2OWU2ZTgzMyIsImlhdCI6MTU2MzgxNzc0MSwic3ViIjoiZGV2ZWxvcGVyL2M5Mjg3NjNjLWJhMWEtNDFiMi01OWQ5LTcyNTE4ZmQ5Y2NhNiIsInNjb3BlcyI6WyJyb3lhbGUiXSwibGltaXRzIjpbeyJ0aWVyIjoiZGV2ZWxvcGVyL3NpbHZlciIsInR5cGUiOiJ0aHJvdHRsaW5nIn0seyJjaWRycyI6WyI4OS44MC4xMDcuMjM2Il0sInR5cGUiOiJjbGllbnQifV19.7i1H1tnRzxQtFo-NXnIx6eTsQXVgEzqj-Y3-xmP7em99LPHwIxKDjiTr3bC25k7oWc3HroguNT6bVuk--ZTlMQ"
+    }   
+};
 
-
-
-app.use('/', require('./routes/communs')); 
-app.use('/', require('./routes/cartes')); 
-app.use('/raritys', require('./routes/raritys')); 
-
-
-
-
-nunjucks.configure('views', {
-    autoescape: true,
-    express: app
+app.get('/', (req, res) => {
+    request(URLAPI, options, function (err, response, body) {
+        if (err || response.statusCode !== 200) {
+          return res.sendStatus(500);
+        }
+        res.render('index.pug', {data: JSON.parse(body)});
+      });	
 });
 
-console.log('royaledata lancé sur le port 3000');
-app.listen(3000); 
+app.post('/', (req, res) => {
+    console.log(req.body);
+    request(URLAPI, options, function (err, response, body) {
+        if (err || response.statusCode !== 200) {
+          return res.sendStatus(500);
+        }
+        res.render('index.pug', {data: JSON.parse(body)});
+    }); 
+})
+
+io.on('connection', function(socket){
+    console.log('un utilisateur vient de se connecter'); 
+    socket.on('disconnect', function(){
+        console.log('un utilisateur vient de se déconnecter');
+    })
+    socket.on('chatMessage',function(msg){
+        console.log('message reçu : ' + msg); 
+        io.emit('chatMessage', msg); 
+    })
+})
+
+
+http.listen(PORT, function(){
+    console.log(`royaledata lancé sur le port ${PORT}`);
+}); 

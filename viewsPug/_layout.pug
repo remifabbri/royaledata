@@ -1,0 +1,82 @@
+doctype html
+head
+  title DS
+  meta(charset='utf-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1')
+  // <link href="/css/styleFront.css" rel="stylesheet">
+  link(rel='stylesheet', href='/css/bootstrap.min.css')
+  link(rel='icon', href='data:;base64,=')
+  script(src='/dist/bundleFrontend.js')
+  script(src='/data/clanData.js')
+  
+//
+  <header class="navHead">
+  <a href="/">
+  <div class="backImg"></div>
+  <img src="/images/logo.png" alt="" class="logoLayout">
+  </a>
+  <span id="accessBtn"><a href="/login">LogIn</a></span>
+  </header>
+main.mainContent
+  nav.navBar
+    h1= "Réseau Sociale TREPALIUM"
+    div
+      button(id="btnCreerCompte")= "Créer un compte"
+      button(id="btnIdentifier")= "s'identifier"
+
+  form(action="/" method="POST" class="formTrep" id="CreerCompte")
+    h2= "Créer un compte"
+    p= "Nom"
+    input(id='CCname' type="text" name="name")
+    p= "Email"
+    input(id='CCEmail' type="text" name="email")
+    P= "Mot de passe"
+    input(id="CCMDP" type="text" name="passeword")
+    P= "Confirmer votre mot de passe"
+    input(id="CCCMDP" type="text" name="passeword2")
+    button(id='btnSendCC' type="submit")= "Envoyer"
+  
+  form(action="/user/login" method="POST" class="formTrep" id="identifier")
+    h2= "S'identifier"
+    p= "Email"
+    input(id='CCEmail')
+    P= "Mot de passe"
+    input(id="CCMDP")
+    button(id='btnSendCC' type="submit")= "Envoyer"
+
+
+  block content
+
+script(src='/js/jquery-3.3.1.js')
+script(src='/socket.io/socket.io.js')
+script.
+
+  $("#CreerCompte").hide();
+
+  $("#btnCreerCompte").click(function(){
+    $("#identifier").hide();
+    $("#CreerCompte").toggle();
+  });
+
+  $("#identifier").hide();
+
+  $("#btnIdentifier").click(function(){
+    $("#CreerCompte").hide();
+    $("#identifier").toggle();
+  });
+
+
+  var socket = io(); 
+  var send = function(){
+    var text = document.getElementById('m').value; 
+    socket.emit('chatMessage', text); 
+  }
+
+  var receive = function(msg){
+    console.log(msg); 
+    var li = document.createElement('li'); 
+    li.innerText = msg; 
+    document.getElementById('message').appendChild(li); 
+  }
+
+  socket.on('chatMessage', receive); 

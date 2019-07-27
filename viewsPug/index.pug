@@ -1,0 +1,29 @@
+
+extends _layout.pug
+
+block content
+	header.header
+		h1(name='nameClan')= data.name
+		p(name='descriptionClan')= data.description
+		span
+			.icon
+			span(name='clanScore')= data.clanScore
+		span
+			.icon
+			span(name='clanWarTrophies')= data.clanWarTrophies
+	section(name='membersClan')
+		ul.listMember 
+			each member in data.memberList
+				li.rowMember
+					div= member.name
+					- var explevel = "expLevel" + member.expLevel
+					div(class=explevel)
+					div= member.role
+					div.leftIcon
+						span.trophiesIcon
+						span= member.trophies
+	section.chat
+		ul(id="message")
+		div
+			input(id="m")
+			button(onclick='send()') envoyer				

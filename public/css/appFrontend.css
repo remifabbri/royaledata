@@ -1,0 +1,135 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+@import url("https://fonts.googleapis.com/css?family=Montserrat+Subrayada|Nova+Round|Poiret+One|Share+Tech+Mono|VT323|Varela+Round");
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/*
+	font-family: 'Varela Round', sans-serif;
+	font-family: 'Poiret One', cursive;
+	font-family: 'Share Tech Mono', monospace;
+	font-family: 'Montserrat Subrayada', sans-serif;
+
+	font-family: 'VT323', monospace; 
+
+*/
+html {
+  height: 100%;
+  font-family: "Share Tech Mono", monospace;
+}
+
+a:hover {
+  text-decoration: none !important;
+}
+
+body {
+  height: 100%;
+  /*cursor: url(/images/cursorRoyaleData.png) 2 2, pointer;*/
+  background-image: url(/images/backgroundCRblur.jpg);
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+
+.navHead {
+  position: fixed;
+  top: 0;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  background-color: white;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+.navHead img {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 65px;
+  width: auto;
+}
+.navHead .backImg {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 75px;
+  width: 75px;
+  background-color: white;
+  border-radius: 50%;
+  border-bottom: 1px solid blueviolet;
+}
+
+.container {
+  height: 100%;
+}
+
+.mainContent {
+  height: 100%;
+}
+
+/*******************
+    Index.html
+*******************/
+.header {
+  height: 50%;
+  width: 75%;
+  margin: 0 auto;
+  margin-top: 50px;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+/*# sourceMappingURL=appFrontend.css.map */
