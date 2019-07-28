@@ -7,16 +7,34 @@
     height: 100%; 
 }
 
+.UpperBold{
+    // text-shadow: 0px 1px 1px #545454; 
+    text-shadow: 1px 1px 1px rgba(0,0,0,.5); 
+    font-family: "clashRoyalBold";
+    text-transform: uppercase;
+}
+
+.lowerBold{
+    // text-shadow: 0px 1px 1px #545454; 
+    text-shadow: 1px 1px 1px rgba(0,0,0,.5); 
+    font-family: "clashRoyalBold";
+}
 /*******************
     Layout.html
 *******************/
 
+// Barre de navigation
 .navBar{
-    height: 40px; 
+    position:fixed; 
+    top:0px; 
+    width: 100%; 
+    height: 30px; 
     display: flex; 
     flex-flow: row nowrap; 
     justify-content: space-between; 
+    align-items: center; 
     padding : 5px 10px; 
+    //border-bottom: 2px solid #3A87DD; 
 
     button{
         border: none; 
@@ -28,6 +46,8 @@
     }
 }
 
+
+// formulaire
 .formTrep{
     position: fixed;
     top: 50%; 
@@ -40,6 +60,7 @@
     border: 5px solid  rgba(58, 135, 221, 1);
     border-radius: 5px;
     color: black; 
+    z-index: 9; 
 
     h2{
         text-align: center; 
@@ -57,8 +78,52 @@
         background-color:  rgba(58, 135, 221, 0.8);
         border-radius: 5px; 
         color: white; 
+        border: none; 
         padding: 5px; 
+        
     }
+}
+
+
+/*******************
+    receiveMessage.html
+*******************/
+
+.receiveMessage{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center; 
+    justify-content: space-between; 
+    width: 50%;
+    padding: 5px;
+    border-radius: 5px;
+    z-index: 10;  
+}
+
+.validMsg{ 
+    position: fixed; 
+    top: 50px;
+    left: 0px; 
+    background-color: rgba(97, 214, 113, 0.8); 
+}
+
+.errorMsg{
+    background-color: rgba(189, 67, 65, 0.6);
+    margin-top: 50px;  
+}
+
+.btnClose{
+    height: 20px; 
+    width: 20px; 
+    border-radius: 50%; 
+    border: none; 
+    background-color: rgba(0,0,0,0.5); 
+    // translate: rotate(45deg); 
+    font-size: 13px; 
+    text-align: center; 
+    line-height: 13px; 
+    color: white; 
+    padding: 0; 
 }
 
 
@@ -66,12 +131,48 @@
     Index.html
 *******************/
 
-.header{
-    height: 50%;
-    width: 60%;
+.headerClan{
+    display: flex; 
+    flex-flow: column nowrap; 
+    align-items: center; 
+    height: auto;
+    width: 40%;
     margin:0 auto; 
-    margin-top: 50px;  
-    background: rgba(0, 0, 0, 0.5);  
+    margin-top: 50px;
+    border: 1px solid rgb(57, 99, 146);
+    background: rgba(58, 135, 221, .5); 
+    border-top-right-radius: 15px; 
+    border-top-left-radius: 15px; 
+}
+.legendClan{
+    text-align: center; 
+    margin-bottom: 10px;
+    span{
+      margin: 0; 
+    } 
+    
+    .nameClan{
+        text-shadow: 1px 1px 1px rgba(0,0,0,.5); 
+        font-family: "clashRoyalBold";
+        text-transform: uppercase;
+        font-size: 30px; 
+    }
+}
+
+.descriptionClan{
+    text-shadow: 1px 1px 1px rgba(0,0,0,.5); 
+    font-size: 15px; 
+    line-height: 15px; 
+    text-align: center;
+    margin-bottom: 5px;  
+}
+
+.rankContent{
+    display: flex; 
+    flex-flow: row nowrap; 
+    justify-content: space-around;
+    width: 100%; 
+    margin-top: 10px;  
 }
 
 // liste member
@@ -79,16 +180,27 @@
 
 .listMember{
     height: auto;
-    width: 60%;
+    width: 40%;
     margin:0 auto;
     
 }
 
 .rowMember{
+    position: relative; 
     margin-top: 25px;  
     display: flex;
-    background: rgba(0, 0, 0, 0.5); 
+    // border: 1px solid rgba(58, 135, 221, 1);
+    border: 1px solid rgb(57, 99, 146);
+    background: rgba(58, 135, 221, .5)
+
 }
+
+
+
+.roleClan{
+    font-size: 9px; 
+}
+
 
 
 
@@ -96,18 +208,19 @@
 
 .chat{
     position: fixed; 
-    top:0; 
+    bottom:0; 
     left:0; 
     display : flex; 
-    padding-bottom: 75px; 
-    height: 100%; 
-    width: 20%;
+    padding-bottom: 50px; 
+    height: calc(100% - 30px);
+    width: 25%;
 
 
     ul{
         display: flex; 
         flex-flow: column nowrap; 
-        justify-content: flex-end; 
+        justify-content: flex-end;
+        width: 100%;  
         
         li{
             font-size: 10px; 
@@ -115,6 +228,7 @@
             margin-top: 5px; 
             padding: 5px; 
             background: rgba(0, 0, 0, 0.7);
+            
         }
     }
 
@@ -128,12 +242,18 @@
             padding: 5px; 
             word-break: break-all; 
             color: black;
-            font-size: 10px;  
+            font-size: 10px;
+            border: none; 
         }
     
         button{
             width: 100%;
+            font-size: 16px;
             background-color: #3A87DD; 
+            border-radius: 5px; 
+            border-top-right-radius: 0px; 
+            border-top-left-radius: 0px; 
+            margin-bottom: 5px; 
             border: none; 
             cursor: pointer;
         }

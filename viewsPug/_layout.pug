@@ -4,7 +4,7 @@ head
   meta(charset='utf-8')
   meta(name='viewport', content='width=device-width, initial-scale=1')
   // <link href="/css/styleFront.css" rel="stylesheet">
-  link(rel='stylesheet', href='/css/bootstrap.min.css')
+  //- link(rel='stylesheet', href='/css/bootstrap.min.css')
   link(rel='icon', href='data:;base64,=')
   script(src='/dist/bundleFrontend.js')
   script(src='/data/clanData.js')
@@ -19,7 +19,8 @@ head
   </header>
 main.mainContent
   nav.navBar
-    h1= "Réseau Sociale TREPALIUM"
+    a(href="/")
+      h1= "Réseau Sociale TREPALIUM"
     div
       button(id="btnCreerCompte")= "Créer un compte"
       button(id="btnIdentifier")= "s'identifier"
@@ -31,9 +32,9 @@ main.mainContent
     p= "Email"
     input(id='CCEmail' type="text" name="email")
     P= "Mot de passe"
-    input(id="CCMDP" type="text" name="passeword")
+    input(id="CCMDP" type="text" name="password")
     P= "Confirmer votre mot de passe"
-    input(id="CCCMDP" type="text" name="passeword2")
+    input(id="CCCMDP" type="text" name="password2")
     button(id='btnSendCC' type="submit")= "Envoyer"
   
   form(action="/user/login" method="POST" class="formTrep" id="identifier")
@@ -51,6 +52,14 @@ script(src='/js/jquery-3.3.1.js')
 script(src='/socket.io/socket.io.js')
 script.
 
+  $(".btnClose").click(function(){
+    $(this).parents("div").remove();  
+  })
+
+  setTimeout( function(){
+    $(".btnClose").parents('div').remove(); 
+  } , 5000);
+
   $("#CreerCompte").hide();
 
   $("#btnCreerCompte").click(function(){
@@ -58,7 +67,9 @@ script.
     $("#CreerCompte").toggle();
   });
 
-  $("#identifier").hide();
+  if(typeof messageValid === "undefined" ){
+    $("#identifier").hide();
+  }
 
   $("#btnIdentifier").click(function(){
     $("#CreerCompte").hide();
@@ -80,3 +91,8 @@ script.
   }
 
   socket.on('chatMessage', receive); 
+
+  var dataMember = "#{dataJSON}";
+  console.log("#{dataJSON}");
+ 
+  

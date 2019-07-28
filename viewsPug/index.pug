@@ -2,28 +2,69 @@
 extends _layout.pug
 
 block content
+	include -receiveMessage.pug	
+		
 	header.header
-		h1(name='nameClan')= data.name
-		p(name='descriptionClan')= data.description
-		span
-			.icon
-			span(name='clanScore')= data.clanScore
-		span
-			.icon
-			span(name='clanWarTrophies')= data.clanWarTrophies
+		fieldset.headerClan
+			legend(class='leftIcon legendClan')
+				span(class=" flagClan")
+				span(class='nameClan')= data.name
+			p(class='descriptionClan')= "RECRUTE de bon tarba prét à faire tomber des tours en GDC 👊"
+			p(class='descriptionClan')= "Clan détente 🦉🔞"
+			//- p(class='descriptionClan')= data.description
+			div(class="rankContent")
+				div(class="rightIcon") 
+					span(class="iconLeaderBoardClan")
+					span(class='lowerBold')= data.clanScore
+				div(class="rightIcon") 
+					span(class="iconWarTrophyClan")
+					span(class='lowerBold')= data.clanWarTrophies
+
 	section(name='membersClan')
 		ul.listMember 
 			each member in data.memberList
-				li.rowMember
-					div= member.name
-					- var explevel = "expLevel" + member.expLevel
-					div(class=explevel)
-					div= member.role
-					div.leftIcon
-						span.trophiesIcon
-						span= member.trophies
+				fieldset.rowMember
+
+					- var arena = member.arena.name
+					case arena
+						when "Ultimate Champion"	
+							div(class="iconLeague ultimateChampion")
+								span(class="UpperBold")= member.trophies
+						when "Grand Champion"
+							div(class="iconLeague grandChampion")
+								span(class="UpperBold")= member.trophies
+						when "Champion"
+							div(class="iconLeague champion")
+								span(class="UpperBold")= member.trophies
+						when "Master III"
+							div(class="iconLeague master3")
+								span(class="UpperBold")= member.trophies
+						when "Master II"
+							div(class="iconLeague master2")
+								span(class="UpperBold")= member.trophies
+						when "Master I"
+							div(class="iconLeague master1")
+								span(class="UpperBold")= member.trophies
+						when "Challenger III"
+							div(class="iconLeague challenger3")
+								span(class="UpperBold")= member.trophies
+						when "Challenger II"
+							div(class="iconLeague challenger2")
+								span(class="UpperBold")= member.trophies
+						when "Challenger I"
+							div(class="iconLeague challenger1")
+								span(class="UpperBold")= member.trophies
+					legend
+						div(class="rightIcon") 
+							span(class="UpperBold")= member.name
+							- var explevel = "expLevel" + member.expLevel
+							span(class=explevel) 
+							span(class="roleClan")= member.role
+
 	section.chat
 		ul(id="message")
 		div
 			input(id="m")
-			button(onclick='send()') envoyer				
+			button(onclick='send()') envoyer
+
+				

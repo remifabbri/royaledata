@@ -1,0 +1,9 @@
+if typeof messageValid !== "undefined"
+    div(class="receiveMessage validMsg")
+        span= messageValid
+        button(class="btnClose")= "X"
+if typeof errors !== "undefined"
+    each error in errors
+        div(class="receiveMessage errorMsg")
+            span= error.msg
+            button(class="btnClose")= "X"
