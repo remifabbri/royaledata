@@ -10,6 +10,13 @@
 */
 
 
+.btnForm{
+	display: flex; 
+	flex-flow: row nowrap; 
+	justify-content: center; 
+}
+
+
 // icon *************************************/
 
 .leftIcon{
@@ -36,7 +43,7 @@
 .flagClan{
 	height: 80px; 
 	width: 80px; 
-	background-image: url(/images/UIElements/flagCLan.png);
+	background-image: url(/static/images/UIElements/flagCLan.png);
 	background-size:contain; 
 	background-repeat: no-repeat;
 	background-position: center; 
@@ -45,7 +52,7 @@
 .trophiesIcon{
 	height: 20px; 
 	width: 20px; 
-	background-image: url(/images/UIElements/trophy.png);
+	background-image: url(/static/images/UIElements/trophy.png);
 	background-size:contain; 
 	background-repeat: no-repeat;
 	background-position: center;
@@ -54,7 +61,7 @@
 .iconLeaderBoardClan{
 	height: 20px; 
 	width: 20px; 
-	background-image: url(/images/UIElements/leaderboard.png);
+	background-image: url(/static/images/UIElements/leaderboard.png);
 	background-size:contain; 
 	background-repeat: no-repeat;
 	background-position: center;
@@ -63,7 +70,7 @@
 .iconWarTrophyClan{
 	height: 20px; 
 	width: 20px; 
-	background-image: url(/images/UIElements/legendary-trophy.png);
+	background-image: url(/static/images/UIElements/legendary-trophy.png);
 	background-size:contain; 
 	background-repeat: no-repeat;
 	background-position: center;
@@ -74,7 +81,7 @@
 .expLevel13{
 	height: 25px; 
 	width: 25px; 
-	background-image: url(/images/Levels/13.png);
+	background-image: url(/static/images/Levels/13.png);
 	background-size:contain; 
 	background-repeat: no-repeat;
 	background-position: center; 
@@ -82,7 +89,7 @@
 .expLevel12{
 	height: 25px; 
 	width: 25px; 
-	background-image: url(/images/Levels/12.png);
+	background-image: url(/static/images/Levels/12.png);
 	background-size:contain; 
 	background-repeat: no-repeat;
 	background-position: center; 
@@ -90,7 +97,7 @@
 .expLevel11{
 	height: 25px; 
 	width: 25px; 
-	background-image: url(/images/Levels/11.png);
+	background-image: url(/static/images/Levels/11.png);
 	background-size:contain; 
 	background-repeat: no-repeat;
 	background-position: center; 
@@ -98,7 +105,7 @@
 .expLevel10{
 	height: 25px; 
 	width: 25px; 
-	background-image: url(/images/Levels/10.png);
+	background-image: url(/static/images/Levels/10.png);
 	background-size:contain; 
 	background-repeat: no-repeat;
 	background-position: center; 
@@ -106,7 +113,7 @@
 .expLevel9{
 	height: 25px; 
 	width: 25px; 
-	background-image: url(/images/Levels/9.png);
+	background-image: url(/static/images/Levels/9.png);
 	background-size:contain; 
 	background-repeat: no-repeat;
 	background-position: center; 
@@ -114,7 +121,7 @@
 .expLevel8{
 	height: 25px; 
 	width: 25px; 
-	background-image: url(/images/Levels/8.png);
+	background-image: url(/static/images/Levels/8.png);
 	background-size:contain; 
 	background-repeat: no-repeat;
 	background-position: center; 
@@ -122,7 +129,7 @@
 .expLevel7{
 	height: 25px; 
 	width: 25px; 
-	background-image: url(/images/Levels/7.png);
+	background-image: url(/static/images/Levels/7.png);
 	background-size:contain; 
 	background-repeat: no-repeat;
 	background-position: center; 
@@ -130,7 +137,7 @@
 .expLevel6{
 	height: 25px; 
 	width: 25px; 
-	background-image: url(/images/Levels/6.png);
+	background-image: url(/static/images/Levels/6.png);
 	background-size:contain; 
 	background-repeat: no-repeat;
 	background-position: center; 
@@ -138,7 +145,7 @@
 .expLevel5{
 	height: 25px; 
 	width: 25px; 
-	background-image: url(/images/Levels/5.png);
+	background-image: url(/static/images/Levels/5.png);
 	background-size:contain; 
 	background-repeat: no-repeat;
 	background-position: center; 
@@ -146,7 +153,7 @@
 .expLevel4{
 	height: 25px; 
 	width: 25px; 
-	background-image: url(/images/Levels/4.png);
+	background-image: url(/static/images/Levels/4.png);
 	background-size:contain; 
 	background-repeat: no-repeat;
 	background-position: center; 
@@ -154,7 +161,7 @@
 .expLevel3{
 	height: 25px; 
 	width: 25px; 
-	background-image: url(/images/Levels/3.png);
+	background-image: url(/static/images/Levels/3.png);
 	background-size:contain; 
 	background-repeat: no-repeat;
 	background-position: center; 
@@ -162,7 +169,7 @@
 .expLevel2{
 	height: 25px; 
 	width: 25px; 
-	background-image: url(/images/Levels/2.png);
+	background-image: url(/static/images/Levels/2.png);
 	background-size:contain; 
 	background-repeat: no-repeat;
 	background-position: center; 
@@ -170,7 +177,7 @@
 .expLevel1{
 	height: 25px; 
 	width: 25px; 
-	background-image: url(/images/Levels/1.png);
+	background-image: url(/static/images/Levels/1.png);
 	background-size:contain; 
 	background-repeat: no-repeat;
 	background-position: center; 
@@ -193,39 +200,39 @@
 }
 
 .ultimateChampion{
-	background-image: url(/images/Leagues/ultimateChampion.png);
+	background-image: url(/static/images/Leagues/ultimateChampion.png);
 }
 
 .grandChampion{
-	background-image: url(/images/Leagues/grandChampion.png);
+	background-image: url(/static/images/Leagues/grandChampion.png);
 }
 
 .champion{
-	background-image: url(/images/Leagues/champion.png);
+	background-image: url(/static/images/Leagues/champion.png);
 }
 
 .master3{
-	background-image: url(/images/Leagues/master-iii.png);
+	background-image: url(/static/images/Leagues/master-iii.png);
 }
 
 .master2{
-	background-image: url(/images/Leagues/master-ii.png);
+	background-image: url(/static/images/Leagues/master-ii.png);
 }
 
 .master1{
-	background-image: url(/images/Leagues/master-i.png);
+	background-image: url(/static/images/Leagues/master-i.png);
 }
 
 .challenger3{
-	background-image: url(/images/Leagues/challenger-iii.png);
+	background-image: url(/static/images/Leagues/challenger-iii.png);
 }
 
 .challenger2{
-	background-image: url(/images/Leagues/challenger-ii.png);
+	background-image: url(/static/images/Leagues/challenger-ii.png);
 }
 
 .challenger1{
-	background-image: url(/images/Leagues/challenger-i.png);
+	background-image: url(/static/images/Leagues/challenger-i.png);
 }
 
 

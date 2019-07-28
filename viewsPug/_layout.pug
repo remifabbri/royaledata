@@ -6,8 +6,8 @@ head
   // <link href="/css/styleFront.css" rel="stylesheet">
   //- link(rel='stylesheet', href='/css/bootstrap.min.css')
   link(rel='icon', href='data:;base64,=')
-  script(src='/dist/bundleFrontend.js')
-  script(src='/data/clanData.js')
+  script(src='/static/dist/bundleFrontend.js')
+  script(src='/static/data/clanData.js')
   
 //
   <header class="navHead">
@@ -20,12 +20,18 @@ head
 main.mainContent
   nav.navBar
     a(href="/")
-      h1= "Réseau Sociale TREPALIUM"
+      h1(class="lowerBold")= "Réseau Social API Clash Royale"
     div
-      button(id="btnCreerCompte")= "Créer un compte"
-      button(id="btnIdentifier")= "s'identifier"
+      if userName
+        div(class="btnForm")
+          span(class="lowerBold")= userName
+          form(action="user/logout" method="POST")
+            button(id="btnDeconnexion" type="submit")= "Déconnexion"
+      else  
+        button(id="btnCreerCompte")= "Créer un compte"
+        button(id="btnIdentifier")= "s'identifier"
 
-  form(action="/" method="POST" class="formTrep" id="CreerCompte")
+  form(action="user/register" method="POST" class="formTrep" id="CreerCompte")
     h2= "Créer un compte"
     p= "Nom"
     input(id='CCname' type="text" name="name")
@@ -40,15 +46,15 @@ main.mainContent
   form(action="/user/login" method="POST" class="formTrep" id="identifier")
     h2= "S'identifier"
     p= "Email"
-    input(id='CCEmail')
+    input(id='CCEmail' name="email")
     P= "Mot de passe"
-    input(id="CCMDP")
+    input(id="CCMDP" name="password")
     button(id='btnSendCC' type="submit")= "Envoyer"
 
 
   block content
 
-script(src='/js/jquery-3.3.1.js')
+script(src='/static/js/jquery-3.3.1.js')
 script(src='/socket.io/socket.io.js')
 script.
 

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router(); 
 const request = require('request');
 const bcrypt = require('bcryptjs');
+const { ensureAuthenticated } = require('../config/auth'); 
 
 const User = require('../models/User'); 
 
@@ -25,78 +26,18 @@ router.get('/', (req, res) => {
       });	
 });
 
-router.post('/', (req, res) => {
-    const { name, email, password, password2} = req.body;
-    let errors = [];
-    let messageValid = "Votre Compte à bien été créé :)"
 
-    if(!name || !email || !password || !password2){ 
-        errors.push({msg: "Tous les champs doivent être rempli !"}); 
-    }
+router.get('/auth', ensureAuthenticated, (req, res) => {
+    request(URLAPI, options, function (err, response, body) {
+        if (err || response.statusCode !== 200) {
+          return res.sendStatus(500);
+        }
+        console.log('init'); 
+        let data = JSON.parse(body);
+        let dataJSON = data; 
+        res.render('authIndex.pug', {data, dataJSON, userName : req.user.name });
+      });	
+});
 
-    if(password !== password2){
-        errors.push({msg: "Les champs Mot de passe ne correspondent pas !"}); 
-    }
-
-    if(errors.length > 0){
-        request(URLAPI, options, function (err, response, body) {
-            if (err || response.statusCode !== 200) {
-              return res.sendStatus(500);
-            }
-            console.log(errors); 
-            res.render('index.pug', {
-                data: JSON.parse(body),
-                errors
-            });
-        }); 
-    }else{
-        User.findOne({email : email})
-            .then(user => {
-                if(user){
-                    errors.push({msg: "Cet email et déjà pris !"}); 
-                    request(URLAPI, options, function (err, response, body) {
-                        if (err || response.statusCode !== 200) {
-                            return res.sendStatus(500);
-                        }
-                        console.log(messageValid); 
-                        res.render('index.pug', {
-                            data: JSON.parse(body),
-                            errors
-                        });
-                    }); 
-                }else{
-                    const newUser = new User({
-                        name,
-                        email,
-                        password
-                    })
-
-                    bcrypt.genSalt(10, (err, salt) => {
-                        bcrypt.hash(newUser.password, salt, (err, hash) =>{
-                            if(err) throw err
-
-                            newUser.password = hash; 
-                            newUser.save()
-                                .then(user => {
-                                    request(URLAPI, options, function (err, response, body) {
-                                        if (err || response.statusCode !== 200) {
-                                            return res.sendStatus(500);
-                                        }
-                                        console.log(messageValid); 
-                                        res.render('index.pug', {
-                                            data: JSON.parse(body),
-                                            messageValid
-                                        });
-                                    });
-                                })
-                                .catch(err =>{
-                                    console.log(err); 
-                                })
-                        })
-                    })  
-                }
-            }) 
-    }
-})
 
 module.exports = router; 

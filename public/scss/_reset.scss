@@ -53,12 +53,12 @@ table {
 
 @font-face {
 	font-family: "clashRoyal";
-	src: url("../fonts/Clash-Regular.otf") format("opentype");
+	src: url("/static/fonts/Clash-Regular.otf") format("opentype");
 }
 
 @font-face {
 	font-family: "clashRoyalBold";
-	src: url("../fonts/Clash-Bold.otf") format("opentype");
+	src: url("/static/fonts/Clash-Bold.otf") format("opentype");
 }
 
 html{
@@ -69,7 +69,7 @@ html{
 body{
 	height: 100%; 
 	/*cursor: url(/images/cursorRoyaleData.png) 2 2, pointer;*/
-	background-image: url(/images/backgroundCRblur.jpg); 
+	background-image: url(/static/images/backgroundCRblur.jpg); 
 	background-attachment: fixed; 
 	background-position: center; 
 	background-size: cover; 
