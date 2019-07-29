@@ -7,6 +7,11 @@
     height: 100%; 
 }
 
+.btnDisable{
+   background-color: grey !important;
+   text-decoration: line-through black;
+}
+
 .UpperBold{
     // text-shadow: 0px 1px 1px #545454; 
     text-shadow: 1px 1px 1px rgba(0,0,0,.5); 
@@ -188,18 +193,106 @@
 .rowMember{
     position: relative; 
     margin-top: 25px;  
-    display: flex;
     // border: 1px solid rgba(58, 135, 221, 1);
     border: 1px solid rgb(57, 99, 146);
     background: rgba(58, 135, 221, .5)
 
 }
 
-
+.blockItems{
+    display: flex;
+    flex-flow: row nowrap; 
+}
 
 .roleClan{
     font-size: 9px; 
 }
+
+
+.chest{
+    display: flex; 
+    flex-flow: row wrap; 
+    justify-content: space-evenly; 
+    width: calc(100% - 75px); 
+    
+    .iconChest:nth-child(0){
+        height: 30px; 
+        width: 20%;
+    }
+    .iconChest:nth-child(1){
+       height: 30px; 
+        width: 20%;
+    } 
+    .iconChest:nth-child(2){
+       height: 30px; 
+        width: 20%;
+    } 
+    .iconChest:nth-child(3){
+       height: 30px; 
+        width: 20%;
+    } 
+    .iconChest:nth-child(4){
+       height: 30px; 
+        width: 20%;
+    } 
+    .iconChest:nth-child(5){
+       height: 30px; 
+        width: 20%;
+    } 
+    .iconChest:nth-child(6){
+       height: 30px; 
+        width: 20%;
+    } 
+    .iconChest:nth-child(7){
+       height: 30px; 
+        width: 20%;
+    } 
+    .iconChest:nth-child(8){
+       height: 30px; 
+        width: 20%;
+    } 
+    .iconChest:nth-child(9){
+        height: 30px; 
+        width: 20%;
+        margin-right: 20px;  
+    } 
+    .iconChest:nth-child(10){
+        height: 40px; 
+        width: 20%;
+    } 
+    .iconChest:nth-child(11){
+        height: 40px; 
+        width: 20%;
+    } 
+    .iconChest:nth-child(12){
+        height: 40px; 
+        width: 20%;
+    } .iconChest:nth-child(13){
+        height: 40px; 
+        width: 20%;
+    } 
+    .iconChest:nth-child(14){
+        height: 40px; 
+        width: 20%;
+    } 
+
+}
+
+.iconChest{
+    display: flex; 
+	flex-flow: row nowrap; 
+	justify-content: center; 
+	align-items: center; 
+	height: 75px; 
+	width: 75px; 
+	background-size:contain; 
+	background-repeat: no-repeat;
+	background-position: center;
+
+    margin-bottom: 5px; 
+     
+}
+
 
 
 
@@ -214,6 +307,7 @@
     padding-bottom: 50px; 
     height: calc(100% - 30px);
     width: 25%;
+
 
 
     ul{

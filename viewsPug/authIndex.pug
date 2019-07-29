@@ -23,7 +23,8 @@ block content
 	section(name='membersClan')
 		ul.listMember 
 			each member in data.memberList
-				fieldset.rowMember
+				- var tag = member.tag
+				fieldset(class="rowMember" name=tag)
 
 					- var arena = member.arena.name
 					case arena

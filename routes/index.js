@@ -20,9 +20,12 @@ router.get('/', (req, res) => {
           return res.sendStatus(500);
         }
         console.log('init'); 
+        // console.log(body); 
         let data = JSON.parse(body);
-        let dataJSON = data; 
-        res.render('index.pug', {data, dataJSON });
+        res.render('index.pug', {
+            data: data, 
+            dataJSON : body
+        });
       });	
 });
 
@@ -30,12 +33,12 @@ router.get('/', (req, res) => {
 router.get('/auth', ensureAuthenticated, (req, res) => {
     request(URLAPI, options, function (err, response, body) {
         if (err || response.statusCode !== 200) {
-          return res.sendStatus(500);
+          return console.log(err); 
         }
         console.log('init'); 
         let data = JSON.parse(body);
         let dataJSON = data; 
-        res.render('authIndex.pug', {data, dataJSON, userName : req.user.name });
+        res.render('index.pug', {data, dataJSON, userName : req.user.name });
       });	
 });
 

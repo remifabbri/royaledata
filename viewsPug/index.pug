@@ -23,37 +23,42 @@ block content
 	section(name='membersClan')
 		ul.listMember 
 			each member in data.memberList
-				fieldset.rowMember
+				- var tag = member.tag
+				fieldset(class="rowMember")
+					div(class="blockItems")
+						- var arena = member.arena.name
+						case arena
+							when "Ultimate Champion"	
+								div(class="iconLeague ultimateChampion")
+									span(class="UpperBold")= member.trophies
+							when "Grand Champion"
+								div(class="iconLeague grandChampion")
+									span(class="UpperBold")= member.trophies
+							when "Champion"
+								div(class="iconLeague champion")
+									span(class="UpperBold")= member.trophies
+							when "Master III"
+								div(class="iconLeague master3")
+									span(class="UpperBold")= member.trophies
+							when "Master II"
+								div(class="iconLeague master2")
+									span(class="UpperBold")= member.trophies
+							when "Master I"
+								div(class="iconLeague master1")
+									span(class="UpperBold")= member.trophies
+							when "Challenger III"
+								div(class="iconLeague challenger3")
+									span(class="UpperBold")= member.trophies
+							when "Challenger II"
+								div(class="iconLeague challenger2")
+									span(class="UpperBold")= member.trophies
+							when "Challenger I"
+								div(class="iconLeague challenger1")
+									span(class="UpperBold")= member.trophies
 
-					- var arena = member.arena.name
-					case arena
-						when "Ultimate Champion"	
-							div(class="iconLeague ultimateChampion")
-								span(class="UpperBold")= member.trophies
-						when "Grand Champion"
-							div(class="iconLeague grandChampion")
-								span(class="UpperBold")= member.trophies
-						when "Champion"
-							div(class="iconLeague champion")
-								span(class="UpperBold")= member.trophies
-						when "Master III"
-							div(class="iconLeague master3")
-								span(class="UpperBold")= member.trophies
-						when "Master II"
-							div(class="iconLeague master2")
-								span(class="UpperBold")= member.trophies
-						when "Master I"
-							div(class="iconLeague master1")
-								span(class="UpperBold")= member.trophies
-						when "Challenger III"
-							div(class="iconLeague challenger3")
-								span(class="UpperBold")= member.trophies
-						when "Challenger II"
-							div(class="iconLeague challenger2")
-								span(class="UpperBold")= member.trophies
-						when "Challenger I"
-							div(class="iconLeague challenger1")
-								span(class="UpperBold")= member.trophies
+						div(class="chest" name=tag)
+
+						
 					legend
 						div(class="rightIcon") 
 							span(class="UpperBold")= member.name
@@ -65,6 +70,9 @@ block content
 		ul(id="message")
 		div
 			input(id="m")
-			button(onclick='send()') envoyer
-
+			if(userName)
+				button(onclick='send()') envoyer
+			else
+				button(class="btnDisable") envoyer
+	
 				

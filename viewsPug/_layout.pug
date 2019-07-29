@@ -56,6 +56,7 @@ main.mainContent
 
 script(src='/static/js/jquery-3.3.1.js')
 script(src='/socket.io/socket.io.js')
+script(src='https://unpkg.com/axios/dist/axios.min.js')
 script.
 
   $(".btnClose").click(function(){
@@ -98,7 +99,33 @@ script.
 
   socket.on('chatMessage', receive); 
 
-  var dataMember = "#{dataJSON}";
-  console.log("#{dataJSON}");
+  var receiveData = function(data){
+    //- console.log(data);
+    let tag= Object.keys(data); 
+    let contentMember = document.getElementsByName(tag[0]); 
+    //- console.log(contentMember[0]);
+    //- console.log(data[tag].items); 
+    while (contentMember[0].firstChild) {
+      contentMember[0].removeChild(contentMember[0].firstChild);
+    }
+    data[tag].items.forEach( chest => {
+      //- console.log(chest); 
+      let name = chest.name.replace(' ', ''); 
+      let div = document.createElement('div');
+      div.innerText = chest.index; 
+      div.setAttribute('class', `iconChest ${name}`); 
+      contentMember[0].appendChild(div); 
+
+    })
+
+  }
+  socket.on('dataMemberList', receiveData); 
+
+
+
+  //- var json = "#{dataJSON}".replace(/&quot;/g, '"'),
+  //- dataJSON = JSON.parse(json);
+
+  
  
   
