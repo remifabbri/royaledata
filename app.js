@@ -105,8 +105,10 @@ let taskCron = cron.schedule('*/1 * * * *', () => {
         let dataCR = JSON.parse(body)
 
         let countItems = 0;
-        console.log(dataCR.memberList); 
-        let arrLength = dataCR.memberList.length; 
+        let arrLength 
+        if(dataCR.memberList != undefined){
+            arrLength = dataCR.memberList.length; 
+        }
 
         dataCR.memberList.forEach( member => {
             let memberChest = {}; 
