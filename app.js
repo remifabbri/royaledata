@@ -4,6 +4,8 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http); 
 const PORT = process.env.PORT || 3000;
 
+var cron = require('node-cron');
+
 const request = require('request');
 
 const session = require('express-session'); 
@@ -75,37 +77,13 @@ app.use('/user', require('./routes/user'));
 let URLAPI = "https://api.clashroyale.com/v1/clans/%23RYYRLV"; 
 let options = {
     headers: {
-         'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6Ijg1Y2QwNWM2LTE3OWYtNDZiYy04YzM3LWFjODU2OWU2ZTgzMyIsImlhdCI6MTU2MzgxNzc0MSwic3ViIjoiZGV2ZWxvcGVyL2M5Mjg3NjNjLWJhMWEtNDFiMi01OWQ5LTcyNTE4ZmQ5Y2NhNiIsInNjb3BlcyI6WyJyb3lhbGUiXSwibGltaXRzIjpbeyJ0aWVyIjoiZGV2ZWxvcGVyL3NpbHZlciIsInR5cGUiOiJ0aHJvdHRsaW5nIn0seyJjaWRycyI6WyI4OS44MC4xMDcuMjM2Il0sInR5cGUiOiJjbGllbnQifV19.7i1H1tnRzxQtFo-NXnIx6eTsQXVgEzqj-Y3-xmP7em99LPHwIxKDjiTr3bC25k7oWc3HroguNT6bVuk--ZTlMQ"
+         'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjhhM2UzMDVlLTU0MTYtNGZlZS05ODliLTZmODdiZTVjOTUxYyIsImlhdCI6MTU2NDQ3ODQ1Nywic3ViIjoiZGV2ZWxvcGVyL2M5Mjg3NjNjLWJhMWEtNDFiMi01OWQ5LTcyNTE4ZmQ5Y2NhNiIsInNjb3BlcyI6WyJyb3lhbGUiXSwibGltaXRzIjpbeyJ0aWVyIjoiZGV2ZWxvcGVyL3NpbHZlciIsInR5cGUiOiJ0aHJvdHRsaW5nIn0seyJjaWRycyI6WyI3Ny4xNTQuMTkzLjE4MCJdLCJ0eXBlIjoiY2xpZW50In1dfQ.EIS-4fvnPguFh5ICsIcCo47ObC0erc25AYtvMiQuX_782x4RpqxXtnlt2L5ldcbP1CaUExMPAhOIiC2CvLws1Q"
     }   
 };
 
 
 io.on('connection', function(socket){
     console.log('un utilisateur vient de se connecter'); 
-
-    request(URLAPI, options, function (err, res, body) {
-        if (err || res.statusCode !== 200) {
-          return res.sendStatus(500);
-        } 
-        // console.log(body);
-        let dataCR = JSON.parse(body)
-        dataCR.memberList.forEach( member => {
-            let memberChest = {}; 
-            let param = member.tag.replace('#',"%23"); 
-            let idMember = member.tag; 
-            let urlMemberChest = `https://api.clashroyale.com/v1/players/${param}/upcomingchests`; 
-            
-            request(urlMemberChest, options, function (err, res, body) {
-                if (err || res.statusCode !== 200) {
-                    return res.sendStatus(500);
-                } 
-                memberChest[idMember] = JSON.parse(body); 
-                // console.log(memberChest); 
-                io.emit('dataMemberList', memberChest);
-            });
-        }); 
-        
-    });
 
     socket.on('disconnect', function(){
         console.log('un utilisateur vient de se déconnecter');
@@ -116,7 +94,58 @@ io.on('connection', function(socket){
     })
 })
 
+let taskCron = cron.schedule('*/1 * * * *', () => {
 
-http.listen(PORT, function(){
-    console.log(`royaledata lancé sur le port ${PORT}`);
+    request(URLAPI, options, (err, response, body) => {
+        if (err || response.statusCode !== 200) {
+          console.log(response.statusCode); 
+        } 
+
+        let dataCR = JSON.parse(body)
+
+        let countItems = 0;
+        let arrLength = dataCR.memberList.length; 
+
+        dataCR.memberList.forEach( member => {
+            let memberChest = {}; 
+            let param = member.tag.replace('#',"%23"); 
+            let idMember = member.tag; 
+            let urlMemberChest = `https://api.clashroyale.com/v1/players/${param}/upcomingchests`; 
+            
+            request(urlMemberChest, options, (err, response, body) => {
+                if (err || response.statusCode !== 200) {
+                    return res.sendStatus(500);
+                } 
+                memberChest[idMember] = JSON.parse(body); 
+
+                let memberUpdate = dataCR.memberList.filter(member => member.tag === idMember); 
+
+                memberUpdate[0].chest = memberChest[idMember];
+
+                dataCR.memberList[idMember] = memberUpdate[0]; 
+
+                countItems += 1; 
+
+                if(countItems === arrLength ){
+                    fs.writeFile('./public/data/clanData.json', JSON.stringify(dataCR), (err) => {
+                        if (err) throw err;
+                        console.log('The file has been saved!');
+                    });
+
+                    let dataCRFile = "let dataCRFile = " + JSON.stringify(dataCR) ; 
+
+                    fs.writeFile('./public/data/clanData.js', dataCRFile, (err) => {
+                        if (err) throw err;
+                        console.log('The file has been saved!');
+                    });
+                }
+            });
+        }); 
+    });
+});
+
+taskCron.start(); 
+
+http.listen(PORT, function(err){
+    console.log(`royaledata lancé sur le port`);
 }); 
