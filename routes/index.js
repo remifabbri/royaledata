@@ -16,14 +16,11 @@ let options = {
 
 
 router.get('/', (req, res) => {
-
   fs.readFile('./public/data/clanData.json', (err, data) => {
     if (err) throw err;
-
     res.render('index.pug', {
         data: JSON.parse(data), 
     });
-
   });
 });
 

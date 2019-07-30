@@ -28,31 +28,25 @@ router.post('/register', (req, res) => {
     }
 
     if(errors.length > 0){
-        request(URLAPI, options, function (err, response, body) {
-            if (err || response.statusCode !== 200) {
-              return res.sendStatus(500);
-            }
-            console.log(errors); 
+        fs.readFile('./public/data/clanData.json', (err, data) => {
+            if (err) throw err;
             res.render('index.pug', {
-                data: JSON.parse(body),
-                errors
+                data: JSON.parse(data),
+                errors 
             });
-        }); 
+        });
     }else{
         User.findOne({email : email})
             .then(user => {
                 if(user){
                     errors.push({msg: "Cet email et déjà pris !"}); 
-                    request(URLAPI, options, function (err, response, body) {
-                        if (err || response.statusCode !== 200) {
-                            return res.sendStatus(500);
-                        }
-                        console.log(messageValid); 
+                    fs.readFile('./public/data/clanData.json', (err, data) => {
+                        if (err) throw err;
                         res.render('index.pug', {
-                            data: JSON.parse(body),
-                            errors
+                            data: JSON.parse(data),
+                            errors 
                         });
-                    }); 
+                    });
                 }else{
                     const newUser = new User({
                         name,
@@ -68,14 +62,11 @@ router.post('/register', (req, res) => {
                             newUser.save()
                                 .then(user => {
                                     req.flash('success_msg', 'La création de votre compte à été un succées vous pouvez maintenant vous identifiez :)')
-                                    request(URLAPI, options, function (err, response, body) {
-                                        if (err || response.statusCode !== 200) {
-                                            return res.sendStatus(500);
-                                        }
-                                        console.log(messageValid); 
+                                    fs.readFile('./public/data/clanData.json', (err, data) => {
+                                        if (err) throw err;
                                         res.render('index.pug', {
-                                            data: JSON.parse(body),
-                                            messageValid
+                                            data: JSON.parse(data),
+                                            messageValid 
                                         });
                                     });
                                 })
