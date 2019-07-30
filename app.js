@@ -108,6 +108,8 @@ let taskCron = cron.schedule('*/1 * * * *', () => {
         let arrLength 
         if(dataCR.memberList != undefined){
             arrLength = dataCR.memberList.length; 
+        }else{
+            return
         }
 
         dataCR.memberList.forEach( member => {
