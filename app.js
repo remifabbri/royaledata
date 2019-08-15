@@ -20,7 +20,7 @@ const mongoose = require('mongoose');
 const db = require('./config/dbConfig').MongoURI; 
 
 const User = require('./models/User'); 
-const MsgGenerale = require('./models/MsgGen'); 
+const MsgGenerale = require('./models/msgGen'); 
 
 mongoose.connect(db, {useNewUrlParser:true})
     .then(() => {
