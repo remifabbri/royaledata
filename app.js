@@ -37,7 +37,7 @@ const fs = require('fs');
 const pug = require('pug'); 
 
 let proxy = url.parse(process.env.QUOTAGUARDSTATIC_URL);
-let target  = url.parse("https://api.clashroyale.com/v1");
+let target  = url.parse("https://sn-api-clash-royale.herokuapp.com/");
 
 let options = {
   hostname: proxy.hostname,
