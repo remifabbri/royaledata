@@ -36,18 +36,16 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const pug = require('pug'); 
 
-let proxy = url.parse(process.env.QUOTAGUARDSTATIC_URL);
-let target  = url.parse("https://sn-api-clash-royale.herokuapp.com/");
+// let proxy = url.parse(process.env.QUOTAGUARDSTATIC_URL);
+// let target  = url.parse("https://sn-api-clash-royale.herokuapp.com/");
 
 let options = {
-  hostname: proxy.hostname,
-  port: proxy.port || 80,
-  path: target.href,
-  headers: {
-    "Proxy-Authorization": "Basic " + (new Buffer(proxy.auth).toString("base64")),
-    "Host" : target.hostname,
-    'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjdjMDYwOTEwLTFjOTYtNDU5My1hN2VkLWYwMTkzYTIyNDg4OCIsImlhdCI6MTU2NTg3NjIwNywic3ViIjoiZGV2ZWxvcGVyL2M5Mjg3NjNjLWJhMWEtNDFiMi01OWQ5LTcyNTE4ZmQ5Y2NhNiIsInNjb3BlcyI6WyJyb3lhbGUiXSwibGltaXRzIjpbeyJ0aWVyIjoiZGV2ZWxvcGVyL3NpbHZlciIsInR5cGUiOiJ0aHJvdHRsaW5nIn0seyJjaWRycyI6WyI1NC4xOTQuODYuMjA0Il0sInR5cGUiOiJjbGllbnQifV19.g5c2bzSTveUPDdouFwM3C5Y4v93sJGrjNfXgKkmZDwCHNWNY1u8HA51cHSvk7G3KOe-a50e1aeSA7kjsD3JBTA"
-  }
+    proxy: process.env.QUOTAGUARDSTATIC_URL,
+    
+    headers: {
+        'User-Agent': 'node.js',
+        'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjdjMDYwOTEwLTFjOTYtNDU5My1hN2VkLWYwMTkzYTIyNDg4OCIsImlhdCI6MTU2NTg3NjIwNywic3ViIjoiZGV2ZWxvcGVyL2M5Mjg3NjNjLWJhMWEtNDFiMi01OWQ5LTcyNTE4ZmQ5Y2NhNiIsInNjb3BlcyI6WyJyb3lhbGUiXSwibGltaXRzIjpbeyJ0aWVyIjoiZGV2ZWxvcGVyL3NpbHZlciIsInR5cGUiOiJ0aHJvdHRsaW5nIn0seyJjaWRycyI6WyI1NC4xOTQuODYuMjA0Il0sInR5cGUiOiJjbGllbnQifV19.g5c2bzSTveUPDdouFwM3C5Y4v93sJGrjNfXgKkmZDwCHNWNY1u8HA51cHSvk7G3KOe-a50e1aeSA7kjsD3JBTA"
+    }
 };
 
 // let options = {
