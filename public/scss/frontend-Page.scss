@@ -272,12 +272,18 @@
        
         
         span:nth-child(1){
-            font-size: 8px; 
+            font-size: 12px; 
+            @media (max-width: 560px){
+                font-size: 8px; 
+            }
 
         }
         span:nth-child(2){
-            font-size: 10px; 
 
+            font-size: 12px; 
+            @media (max-width: 560px){
+                font-size: 10px; 
+            }
         }
     }  
 }
