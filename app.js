@@ -115,7 +115,7 @@ io.on('connection', function(socket){
     })
 })
 
-let taskCron = cron.schedule('*/1 * * * *', () => {
+let taskCronDataMember = cron.schedule('*/1 * * * *', () => {
 
     let URLAPI = "https://api.clashroyale.com/v1/clans/%23RYYRLV"; 
     let options = {
@@ -126,7 +126,7 @@ let taskCron = cron.schedule('*/1 * * * *', () => {
 
     request(URLAPI, options, (err, response, body) => {
         if (err || response.statusCode !== 200) {
-            console.log(err, response); 
+            console.log(response.statusCode); 
         } 
 
         let dataCR = JSON.parse(body)
@@ -148,7 +148,7 @@ let taskCron = cron.schedule('*/1 * * * *', () => {
             
             request(urlMemberChest, options, (err, response, body) => {
                 if (err || response.statusCode !== 200) {
-                    console.log(err, response); 
+                    console.log(response.statusCode); 
                 } 
                 memberChest[idMember] = JSON.parse(body); 
 
@@ -156,7 +156,7 @@ let taskCron = cron.schedule('*/1 * * * *', () => {
 
                 request(urlMemberData, options, (err, response, body) => {
                     if (err || response.statusCode !== 200) {
-                        console.log(err, response); 
+                        console.log(response.statusCode); 
                     } 
 
                     memberGlobal[idMember] = JSON.parse(body); 
@@ -188,12 +188,21 @@ let taskCron = cron.schedule('*/1 * * * *', () => {
             });
         }); 
     });
+});
+
+let taskCronWarLog = cron.schedule('*/1 * * * *', () => {
+
+    let options = {
+        headers: {
+            'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjdjMDYwOTEwLTFjOTYtNDU5My1hN2VkLWYwMTkzYTIyNDg4OCIsImlhdCI6MTU2NTg3NjIwNywic3ViIjoiZGV2ZWxvcGVyL2M5Mjg3NjNjLWJhMWEtNDFiMi01OWQ5LTcyNTE4ZmQ5Y2NhNiIsInNjb3BlcyI6WyJyb3lhbGUiXSwibGltaXRzIjpbeyJ0aWVyIjoiZGV2ZWxvcGVyL3NpbHZlciIsInR5cGUiOiJ0aHJvdHRsaW5nIn0seyJjaWRycyI6WyI1NC4xOTQuODYuMjA0Il0sInR5cGUiOiJjbGllbnQifV19.g5c2bzSTveUPDdouFwM3C5Y4v93sJGrjNfXgKkmZDwCHNWNY1u8HA51cHSvk7G3KOe-a50e1aeSA7kjsD3JBTA"
+        }   
+    };
 
     let URLAPIWarlog = "https://api.clashroyale.com/v1/clans/%23RYYRLV/warlog"; 
     
     request(URLAPIWarlog, options, (err, response, body) => {
         if (err || response.statusCode !== 200) {
-            throw err;
+            console.log(response.statusCode); 
         } 
         
         dataWarlog = JSON.parse(body); 
@@ -227,7 +236,8 @@ let taskCron = cron.schedule('*/1 * * * *', () => {
     }); 
 });
 
-taskCron.start(); 
+taskCronDataMember.start(); 
+taskCronWarLog.start(); 
 
 http.listen(PORT, function(err){
     console.log(`royaledata lancé sur le port`);
