@@ -3,14 +3,17 @@
    License: none (public domain)
 */
 @import url("https://fonts.googleapis.com/css?family=Montserrat+Subrayada|Nova+Round|Poiret+One|Share+Tech+Mono|VT323|Varela+Round");
+* {
+  box-sizing: border-box;
+}
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
 b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
+dl, dt, dd, ol, ul, li, form, label,
 table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
@@ -53,6 +56,64 @@ table {
   border-spacing: 0;
 }
 
+@font-face {
+  font-family: "clashRoyal";
+  src: url("/static/fonts/Clash-Regular.otf") format("opentype");
+}
+@font-face {
+  font-family: "clashRoyalBold";
+  src: url("/static/fonts/Clash-Bold.otf") format("opentype");
+}
+html {
+  height: 100%;
+  font-family: "clashRoyal";
+}
+
+body {
+  height: 100%;
+  /*cursor: url(/images/cursorRoyaleData.png) 2 2, pointer;*/
+  background-image: url(/static/images/backgroundCRblur.jpg);
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  color: white;
+}
+
+button {
+  font-family: "clashRoyal";
+  color: white;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+button:active {
+  box-shadow: none;
+}
+button:focus {
+  outline: none;
+}
+
+input {
+  font-family: "clashRoyal";
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+a:hover {
+  color: white;
+  text-decoration: none !important;
+}
+a:focus {
+  color: white;
+  outline: none;
+  text-decoration: none;
+}
+a:visited {
+  color: white;
+}
+
 /*
 	font-family: 'Varela Round', sans-serif;
 	font-family: 'Poiret One', cursive;
@@ -62,55 +123,257 @@ table {
 	font-family: 'VT323', monospace; 
 
 */
-html {
-  height: 100%;
-  font-family: "Share Tech Mono", monospace;
-}
-
-a:hover {
-  text-decoration: none !important;
-}
-
-body {
-  height: 100%;
-  /*cursor: url(/images/cursorRoyaleData.png) 2 2, pointer;*/
-  background-image: url(/images/backgroundCRblur.jpg);
-  background-attachment: fixed;
-  background-position: center;
-  background-size: cover;
-}
-
-.navHead {
-  position: fixed;
-  top: 0;
+.btnForm {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
+  justify-content: center;
+}
+
+.leftIcon {
+  display: flex;
+  flex-flow: row nowrap;
   align-items: center;
-  width: 100%;
-  height: 50px;
-  background-color: white;
-  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
 }
-.navHead img {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 65px;
-  width: auto;
+.leftIcon span {
+  margin: 0px 5px;
 }
-.navHead .backImg {
-  position: absolute;
-  top: 5px;
-  left: 50%;
-  transform: translateX(-50%);
+
+.rightIcon {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+.rightIcon span {
+  margin: 0px 5px;
+}
+
+.flagClan {
+  height: 80px;
+  width: 80px;
+  background-image: url(/static/images/UIElements/flagCLan.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.trophiesIcon {
+  height: 20px;
+  width: 20px;
+  background-image: url(/static/images/UIElements/trophy.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.iconLeaderBoardClan {
+  height: 20px;
+  width: 20px;
+  background-image: url(/static/images/UIElements/leaderboard.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.iconWarTrophyClan {
+  height: 20px;
+  width: 20px;
+  background-image: url(/static/images/UIElements/legendary-trophy.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.expLevel13 {
+  height: 25px;
+  width: 25px;
+  background-image: url(/static/images/Levels/13.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.expLevel12 {
+  height: 25px;
+  width: 25px;
+  background-image: url(/static/images/Levels/12.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.expLevel11 {
+  height: 25px;
+  width: 25px;
+  background-image: url(/static/images/Levels/11.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.expLevel10 {
+  height: 25px;
+  width: 25px;
+  background-image: url(/static/images/Levels/10.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.expLevel9 {
+  height: 25px;
+  width: 25px;
+  background-image: url(/static/images/Levels/9.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.expLevel8 {
+  height: 25px;
+  width: 25px;
+  background-image: url(/static/images/Levels/8.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.expLevel7 {
+  height: 25px;
+  width: 25px;
+  background-image: url(/static/images/Levels/7.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.expLevel6 {
+  height: 25px;
+  width: 25px;
+  background-image: url(/static/images/Levels/6.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.expLevel5 {
+  height: 25px;
+  width: 25px;
+  background-image: url(/static/images/Levels/5.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.expLevel4 {
+  height: 25px;
+  width: 25px;
+  background-image: url(/static/images/Levels/4.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.expLevel3 {
+  height: 25px;
+  width: 25px;
+  background-image: url(/static/images/Levels/3.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.expLevel2 {
+  height: 25px;
+  width: 25px;
+  background-image: url(/static/images/Levels/2.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.expLevel1 {
+  height: 25px;
+  width: 25px;
+  background-image: url(/static/images/Levels/1.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.iconLeague {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
   height: 75px;
   width: 75px;
-  background-color: white;
-  border-radius: 50%;
-  border-bottom: 1px solid blueviolet;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.ultimateChampion {
+  background-image: url(/static/images/Leagues/ultimateChampion.png);
+}
+
+.grandChampion {
+  background-image: url(/static/images/Leagues/grandChampion.png);
+}
+
+.champion {
+  background-image: url(/static/images/Leagues/champion.png);
+}
+
+.master3 {
+  background-image: url(/static/images/Leagues/master-iii.png);
+}
+
+.master2 {
+  background-image: url(/static/images/Leagues/master-ii.png);
+}
+
+.master1 {
+  background-image: url(/static/images/Leagues/master-i.png);
+}
+
+.challenger3 {
+  background-image: url(/static/images/Leagues/challenger-iii.png);
+}
+
+.challenger2 {
+  background-image: url(/static/images/Leagues/challenger-ii.png);
+}
+
+.challenger1 {
+  background-image: url(/static/images/Leagues/challenger-i.png);
+}
+
+.SilverChest {
+  background-image: url(/static/images/Chests/silver-chest.png);
+}
+
+.GoldenChest {
+  background-image: url(/static/images/Chests/golden-chest.png);
+}
+
+.GiantChest {
+  background-image: url(/static/images/Chests/giant-chest.png);
+}
+
+.MagicalChest {
+  background-image: url(/static/images/Chests/magical-chest.png);
+}
+
+.EpicChest {
+  background-image: url(/static/images/Chests/epic-chest.png);
+}
+
+.LegendaryChest {
+  background-image: url(/static/images/Chests/legendary-chest.png);
+}
+
+.MegaLightning {
+  background-image: url(/static/images/Chests/super-magical-chest.png);
 }
 
 .container {
@@ -121,15 +384,269 @@ body {
   height: 100%;
 }
 
+.btnDisable {
+  background-color: grey !important;
+  text-decoration: line-through black;
+}
+
+.UpperBold {
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  font-family: "clashRoyalBold";
+  text-transform: uppercase;
+}
+
+.lowerBold {
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  font-family: "clashRoyalBold";
+}
+
+/*******************
+    Layout.html
+*******************/
+.navBar {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  height: 30px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+}
+.navBar button {
+  border: none;
+  background-color: #3A87DD;
+  border-radius: 5px;
+  margin: 0 10px;
+  font-size: 12px;
+  padding: 4px;
+}
+
+.formTrep {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 25px;
+  height: auto;
+  width: 50%;
+  background-color: white;
+  border: 5px solid #3a87dd;
+  border-radius: 5px;
+  color: black;
+  z-index: 9;
+}
+.formTrep h2 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+.formTrep input {
+  width: 100%;
+  padding: 5px;
+  margin: 5px 0px 10px 0px;
+}
+.formTrep button {
+  width: 100%;
+  background-color: rgba(58, 135, 221, 0.8);
+  border-radius: 5px;
+  color: white;
+  border: none;
+  padding: 5px;
+}
+
+/*******************
+    receiveMessage.html
+*******************/
+.receiveMessage {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
+  padding: 5px;
+  border-radius: 5px;
+  z-index: 10;
+}
+
+.validMsg {
+  position: fixed;
+  top: 50px;
+  left: 0px;
+  background-color: rgba(97, 214, 113, 0.8);
+}
+
+.errorMsg {
+  background-color: rgba(189, 67, 65, 0.6);
+  margin-top: 50px;
+}
+
+.btnClose {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 13px;
+  text-align: center;
+  line-height: 13px;
+  color: white;
+  padding: 0;
+}
+
 /*******************
     Index.html
 *******************/
-.header {
-  height: 50%;
-  width: 75%;
+.headerClan {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  height: auto;
+  width: 40%;
   margin: 0 auto;
   margin-top: 50px;
+  border: 1px solid #396392;
+  background: rgba(58, 135, 221, 0.5);
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+}
+
+.legendClan {
+  text-align: center;
+  margin-bottom: 10px;
+}
+.legendClan span {
+  margin: 0;
+}
+.legendClan .nameClan {
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  font-family: "clashRoyalBold";
+  text-transform: uppercase;
+  font-size: 30px;
+}
+
+.descriptionClan {
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  font-size: 15px;
+  line-height: 15px;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.rankContent {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.listMember {
+  height: auto;
+  width: 40%;
+  margin: 0 auto;
+}
+
+.rowMember {
+  position: relative;
+  margin-top: 25px;
+  border: 1px solid #396392;
+  background: rgba(58, 135, 221, 0.5);
+}
+
+.blockItems {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.roleClan {
+  font-size: 9px;
+}
+
+.chest {
+  position: absolute;
+  bottom: -25px;
+  left: 10%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  width: 90%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.chest .iconChest {
+  height: 30px;
+  width: 20%;
+}
+
+.iconChest {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  height: 75px;
+  width: 75px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-bottom: 5px;
+}
+
+.chat {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  padding-bottom: 50px;
+  height: calc(100% - 30px);
+  width: 25%;
+}
+.chat ul {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-end;
+  width: 100%;
+}
+.chat ul li {
+  font-size: 10px;
+  line-height: 12px;
+  margin-top: 5px;
+  padding: 5px;
   background: rgba(0, 0, 0, 0.7);
+}
+.chat div {
+  position: absolute;
+  bottom: 0;
+}
+.chat div input {
+  height: auto;
+  width: 100%;
+  padding: 5px;
+  word-break: break-all;
+  color: black;
+  font-size: 10px;
+  border: none;
+}
+.chat div button {
+  width: 100%;
+  font-size: 16px;
+  background-color: #3A87DD;
+  border-radius: 5px;
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+  margin-bottom: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.itemMessage {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  height: auto;
+  width: 100%;
+  border-radius: 10px;
+  background-color: #3A87DD;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
 
 /*# sourceMappingURL=appFrontend.css.map */

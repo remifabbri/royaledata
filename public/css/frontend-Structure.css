@@ -8,22 +8,257 @@
 	font-family: 'VT323', monospace; 
 
 */
-html {
-  height: 100%;
-  font-family: "Share Tech Mono", monospace;
+.btnForm {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
 }
 
-a:hover {
-  text-decoration: none !important;
+.leftIcon {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+.leftIcon span {
+  margin: 0px 5px;
 }
 
-body {
-  height: 100%;
-  /*cursor: url(/images/cursorRoyaleData.png) 2 2, pointer;*/
-  background-image: url(/images/backgroundCRblur.jpg);
-  background-attachment: fixed;
+.rightIcon {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+.rightIcon span {
+  margin: 0px 5px;
+}
+
+.flagClan {
+  height: 80px;
+  width: 80px;
+  background-image: url(/static/images/UIElements/flagCLan.png);
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+}
+
+.trophiesIcon {
+  height: 20px;
+  width: 20px;
+  background-image: url(/static/images/UIElements/trophy.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.iconLeaderBoardClan {
+  height: 20px;
+  width: 20px;
+  background-image: url(/static/images/UIElements/leaderboard.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.iconWarTrophyClan {
+  height: 20px;
+  width: 20px;
+  background-image: url(/static/images/UIElements/legendary-trophy.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.expLevel13 {
+  height: 25px;
+  width: 25px;
+  background-image: url(/static/images/Levels/13.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.expLevel12 {
+  height: 25px;
+  width: 25px;
+  background-image: url(/static/images/Levels/12.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.expLevel11 {
+  height: 25px;
+  width: 25px;
+  background-image: url(/static/images/Levels/11.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.expLevel10 {
+  height: 25px;
+  width: 25px;
+  background-image: url(/static/images/Levels/10.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.expLevel9 {
+  height: 25px;
+  width: 25px;
+  background-image: url(/static/images/Levels/9.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.expLevel8 {
+  height: 25px;
+  width: 25px;
+  background-image: url(/static/images/Levels/8.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.expLevel7 {
+  height: 25px;
+  width: 25px;
+  background-image: url(/static/images/Levels/7.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.expLevel6 {
+  height: 25px;
+  width: 25px;
+  background-image: url(/static/images/Levels/6.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.expLevel5 {
+  height: 25px;
+  width: 25px;
+  background-image: url(/static/images/Levels/5.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.expLevel4 {
+  height: 25px;
+  width: 25px;
+  background-image: url(/static/images/Levels/4.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.expLevel3 {
+  height: 25px;
+  width: 25px;
+  background-image: url(/static/images/Levels/3.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.expLevel2 {
+  height: 25px;
+  width: 25px;
+  background-image: url(/static/images/Levels/2.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.expLevel1 {
+  height: 25px;
+  width: 25px;
+  background-image: url(/static/images/Levels/1.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.iconLeague {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  height: 75px;
+  width: 75px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.ultimateChampion {
+  background-image: url(/static/images/Leagues/ultimateChampion.png);
+}
+
+.grandChampion {
+  background-image: url(/static/images/Leagues/grandChampion.png);
+}
+
+.champion {
+  background-image: url(/static/images/Leagues/champion.png);
+}
+
+.master3 {
+  background-image: url(/static/images/Leagues/master-iii.png);
+}
+
+.master2 {
+  background-image: url(/static/images/Leagues/master-ii.png);
+}
+
+.master1 {
+  background-image: url(/static/images/Leagues/master-i.png);
+}
+
+.challenger3 {
+  background-image: url(/static/images/Leagues/challenger-iii.png);
+}
+
+.challenger2 {
+  background-image: url(/static/images/Leagues/challenger-ii.png);
+}
+
+.challenger1 {
+  background-image: url(/static/images/Leagues/challenger-i.png);
+}
+
+.SilverChest {
+  background-image: url(/static/images/Chests/silver-chest.png);
+}
+
+.GoldenChest {
+  background-image: url(/static/images/Chests/golden-chest.png);
+}
+
+.GiantChest {
+  background-image: url(/static/images/Chests/giant-chest.png);
+}
+
+.MagicalChest {
+  background-image: url(/static/images/Chests/magical-chest.png);
+}
+
+.EpicChest {
+  background-image: url(/static/images/Chests/epic-chest.png);
+}
+
+.LegendaryChest {
+  background-image: url(/static/images/Chests/legendary-chest.png);
+}
+
+.MegaLightning {
+  background-image: url(/static/images/Chests/super-magical-chest.png);
 }
 
 /*# sourceMappingURL=frontend-Structure.css.map */

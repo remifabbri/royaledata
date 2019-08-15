@@ -8,6 +8,7 @@ head
   link(rel='icon', href='data:;base64,=')
   script(src='/static/dist/bundleFrontend.js')
   script(src='/static/data/clanData.js')
+  script(src='/static/data/dataWarlogCRFile.js')
   
 //
   <header class="navHead">
@@ -20,8 +21,8 @@ head
 main.mainContent
   nav.navBar
     a(href="/")
-      h1(class="lowerBold")= "Réseau Social API Clash Royale"
-    div
+      h1(class="lowerBold")= "Data TREPALIUM Clash Royale"
+    div(class="connexion")
       if userName
         div(class="btnForm")
           span(class="lowerBold")= userName
@@ -88,23 +89,49 @@ script.
   var socket = io(); 
   var send = function(){
     var text = document.getElementById('m').value; 
-    socket.emit('chatMessage', text); 
+    var message = {
+      username,
+      msg : text, 
+      date: Date.now()
+    }; 
+    socket.emit('chatMessage', message); 
   }
 
   var receive = function(msg){
     console.log(msg); 
+
+    // congigurer le retour message. 
+    // .... retour Obj message
     var li = document.createElement('li'); 
-    li.innerText = msg; 
-    document.getElementById('message').appendChild(li);
+    var pName = document.createElement('span'); 
+    var pMsg = document.createElement('p'); 
+    var dateMsg = docuement.createElement('span');
+
+    pName.innerText = msg.name; 
+    pMsg.innerText = msg.msg; 
+    dateMsg = msg.date; 
+
+    li.setAttribute('class', 'itemMessage'); 
+
+    li.appendChild(pName); 
+    li.appendChild(pmsg); 
+    li.appendChild(dateMsg); 
+    document.getElementById('message').appendChild(li); 
+
+
+    //- var li = document.createElement('li'); 
+    //- li.innerText = msg; 
+    //- document.getElementById('message').appendChild(li);
   }
 
   socket.on('chatMessage', receive); 
 
-  console.log(dataCRFile); 
+  //- console.log(dataCRFile); 
+
   dataCRFile.memberList.forEach( member => {
       let contentMember = document.getElementsByName(member.tag);
-      console.log(contentMember); 
-      console.log(member.tag); 
+      //- console.log(contentMember); 
+      //- console.log(member.tag); 
       memberItem = member.chest.items; 
 
       memberItem.forEach( chest => {
@@ -112,11 +139,39 @@ script.
         let name = chest.name.replace(' ', ''); 
         let div = document.createElement('div');
         div.innerText = chest.index; 
-        div.setAttribute('class', `iconChest ${name}`); 
+        div.setAttribute('class', `iconChest ${name} UpperBold`); 
         contentMember[0].appendChild(div);
-      }); 
-  })
+      });  
+  }); 
 
+  //console.log(dataWarlogCRFile); 
+  Object.keys(dataWarlogCRFile).forEach( memberDataClanWar => {
+    let contentDataWarMember = document.getElementsByName('w'+ memberDataClanWar);
+    console.log(dataWarlogCRFile[memberDataClanWar]);
+    //- contentDataWarMember.[0]
+    let listNodes = contentDataWarMember[0].childNodes; 
+    listNodes.forEach( block => {
+      var nodes = block.querySelectorAll('span');
+      var first = nodes[0];
+      var last = nodes[nodes.length- 1];
+      var propVar = nodes[nodes.length- 1].getAttribute("name").toString();
+      console.log(dataWarlogCRFile[memberDataClanWar][propVar]); 
+      last.innerText = dataWarlogCRFile[memberDataClanWar][propVar]; 
+      last.setAttribute('class', 'UpperBold'); 
+      first.setAttribute('class', 'lowerBold'); 
+    }); 
+    //- contentDataWarMember[0].querySelector('span[name="participation"]').innertext = 9; 
+  }); 
+  //- dataWarlogCRFile.forEach( memberDataClanWar => {
+  //-   let contentMember = document.getElementsByName(memberDataClanWar);
+  //-   console.log(contentMember); 
+  //-   //- let contentWarclanStat = contentMember.
+
+  //-   let div = document.creatElement('div'); 
+    
+
+
+  //- });  
   //- var json = "#{dataJSON}".replace(/&quot;/g, '"'),
   //- dataJSON = JSON.parse(json);
 

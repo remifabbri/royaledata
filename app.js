@@ -19,6 +19,9 @@ require('./config/passport')(passport);
 const mongoose = require('mongoose');
 const db = require('./config/dbConfig').MongoURI; 
 
+const User = require('./models/User'); 
+const MsgGenerale = require('./models/MsgGen'); 
+
 mongoose.connect(db, {useNewUrlParser:true})
     .then(() => {
         console.log("MongoDB OK"); 
@@ -60,6 +63,12 @@ app.use((req, res, next) => {
     next();  
 })
 
+// req and global variable 
+
+app.use((req, res, next) => {
+    res.locals.userName = req.username; 
+    next(); 
+})
 
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css')); 
 app.use('/static', express.static(__dirname + '/public'));
@@ -75,12 +84,7 @@ app.use('/user', require('./routes/user'));
 
 
 
-let URLAPI = "https://api.clashroyale.com/v1/clans/%23RYYRLV"; 
-let options = {
-    headers: {
-         'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjJmMWFmMmI0LTdlOGItNGQzNC04MDhiLWU1NjY3ZjI4YjAzNiIsImlhdCI6MTU2NDUwOTU4NSwic3ViIjoiZGV2ZWxvcGVyL2M5Mjg3NjNjLWJhMWEtNDFiMi01OWQ5LTcyNTE4ZmQ5Y2NhNiIsInNjb3BlcyI6WyJyb3lhbGUiXSwibGltaXRzIjpbeyJ0aWVyIjoiZGV2ZWxvcGVyL3NpbHZlciIsInR5cGUiOiJ0aHJvdHRsaW5nIn0seyJjaWRycyI6WyIzNy4xNzEuMTA5LjE1MSJdLCJ0eXBlIjoiY2xpZW50In1dfQ.riSCjWNaRUHTaPc6yUCRxUFbODMkXswN49tXfYOY4XSxuck_hNBTV8HQzE2t6fgIY8dhF7uFbuCe6geeuGH94A"
-    }   
-};
+
 
 
 io.on('connection', function(socket){
@@ -90,16 +94,39 @@ io.on('connection', function(socket){
         console.log('un utilisateur vient de se déconnecter');
     })
     socket.on('chatMessage',function(msg){
-        console.log('message reçu : ' + msg); 
-        io.emit('chatMessage', msg); 
+
+        let date = Date.now(); 
+        let name = msg.name; 
+
+        const newMsgGenerale = new MsgGenerale({
+            name, 
+            msg : msg.message, 
+            date
+        }); 
+
+        newMsgGenerale.save()
+            .then( () => {
+                console.log('message reçu : ' + msg); 
+                io.emit('chatMessage', msg); 
+            })
+            .catch( err => {
+                console.log(err); 
+            })
     })
 })
 
 let taskCron = cron.schedule('*/1 * * * *', () => {
 
+    let URLAPI = "https://api.clashroyale.com/v1/clans/%23RYYRLV"; 
+    let options = {
+        headers: {
+            'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjdjMDYwOTEwLTFjOTYtNDU5My1hN2VkLWYwMTkzYTIyNDg4OCIsImlhdCI6MTU2NTg3NjIwNywic3ViIjoiZGV2ZWxvcGVyL2M5Mjg3NjNjLWJhMWEtNDFiMi01OWQ5LTcyNTE4ZmQ5Y2NhNiIsInNjb3BlcyI6WyJyb3lhbGUiXSwibGltaXRzIjpbeyJ0aWVyIjoiZGV2ZWxvcGVyL3NpbHZlciIsInR5cGUiOiJ0aHJvdHRsaW5nIn0seyJjaWRycyI6WyI1NC4xOTQuODYuMjA0Il0sInR5cGUiOiJjbGllbnQifV19.g5c2bzSTveUPDdouFwM3C5Y4v93sJGrjNfXgKkmZDwCHNWNY1u8HA51cHSvk7G3KOe-a50e1aeSA7kjsD3JBTA"
+        }   
+    };
+
     request(URLAPI, options, (err, response, body) => {
         if (err || response.statusCode !== 200) {
-          console.log(response.statusCode); 
+            throw err; 
         } 
 
         let dataCR = JSON.parse(body)
@@ -114,40 +141,87 @@ let taskCron = cron.schedule('*/1 * * * *', () => {
 
         dataCR.memberList.forEach( member => {
             let memberChest = {}; 
+            let memberGlobal = {}; 
             let param = member.tag.replace('#',"%23"); 
             let idMember = member.tag; 
             let urlMemberChest = `https://api.clashroyale.com/v1/players/${param}/upcomingchests`; 
             
             request(urlMemberChest, options, (err, response, body) => {
                 if (err || response.statusCode !== 200) {
-                    return res.sendStatus(500);
+                    throw err;
                 } 
                 memberChest[idMember] = JSON.parse(body); 
 
-                let memberUpdate = dataCR.memberList.filter(member => member.tag === idMember); 
+                let urlMemberData = `https://api.clashroyale.com/v1/players/${param}`
 
-                memberUpdate[0].chest = memberChest[idMember];
+                request(urlMemberData, options, (err, response, body) => {
 
-                dataCR.memberList[idMember] = memberUpdate[0]; 
+                    memberGlobal[idMember] = JSON.parse(body); 
 
-                countItems += 1; 
+                    let memberUpdate = dataCR.memberList.filter(member => member.tag === idMember); 
 
-                if(countItems === arrLength ){
-                    fs.writeFile('./public/data/clanData.json', JSON.stringify(dataCR), (err) => {
-                        if (err) throw err;
-                        console.log('The file has been saved!');
-                    });
+                    memberUpdate[0].chest = memberChest[idMember];
 
-                    let dataCRFile = "let dataCRFile = " + JSON.stringify(dataCR) ; 
+                    Object.assign(memberUpdate[0], memberGlobal[idMember]); 
 
-                    fs.writeFile('./public/data/clanData.js', dataCRFile, (err) => {
-                        if (err) throw err;
-                        console.log('The file has been saved!');
-                    });
-                }
+                    dataCR.memberList[idMember] = memberUpdate[0];
+
+                    countItems += 1; 
+    
+                    if(countItems === arrLength ){
+                        fs.writeFile('./public/data/clanData.json', JSON.stringify(dataCR), (err) => {
+                            if (err) throw err;
+                            console.log('The file clanData.json has been saved!');
+                        });
+    
+                        let dataCRFile = "let dataCRFile = " + JSON.stringify(dataCR) ; 
+    
+                        fs.writeFile('./public/data/clanData.js', dataCRFile, (err) => {
+                            if (err) throw err;
+                            console.log('The file clanData.js has been saved!');
+                        });
+                    }
+                })
             });
         }); 
     });
+
+    let URLAPIWarlog = "https://api.clashroyale.com/v1/clans/%23RYYRLV/warlog"; 
+    
+    request(URLAPIWarlog, options, (err, response, body) => {
+        if (err || response.statusCode !== 200) {
+            throw err;
+        } 
+        
+        dataWarlog = JSON.parse(body); 
+        aggreClanWarlog = {}; 
+
+        dataWarlog.items.forEach( warlog => {
+            warlog.participants.forEach(memberWarlog => {
+
+                if(!aggreClanWarlog.hasOwnProperty(`${memberWarlog.tag}`)){
+                    aggreClanWarlog[memberWarlog.tag] = memberWarlog;
+                }else{
+                    aggreClanWarlog[memberWarlog.tag].wins += memberWarlog.wins;
+                    aggreClanWarlog[memberWarlog.tag].cardsEarned += memberWarlog.cardsEarned;
+                    aggreClanWarlog[memberWarlog.tag].battlesPlayed += memberWarlog.battlesPlayed;
+                    aggreClanWarlog[memberWarlog.tag].collectionDayBattlesPlayed += memberWarlog.collectionDayBattlesPlayed;
+                    aggreClanWarlog[memberWarlog.tag].numberOfBattles += memberWarlog.numberOfBattles;
+                }
+            }); 
+        });
+
+        Object.keys(aggreClanWarlog).forEach( participant => {
+            aggreClanWarlog[participant].lost =  aggreClanWarlog[participant].numberOfBattles - aggreClanWarlog[participant].battlesPlayed; 
+        })
+
+        let dataWarlogCRFile = "let dataWarlogCRFile = " + JSON.stringify(aggreClanWarlog); 
+    
+        fs.writeFile('./public/data/dataWarlogCRFile.js', dataWarlogCRFile, (err) => {
+            if (err) throw err;
+            console.log('The file dataWarlogCRFile.js has been saved!');
+        }); 
+    }); 
 });
 
 taskCron.start(); 

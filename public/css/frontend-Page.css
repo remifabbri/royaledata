@@ -6,15 +6,269 @@
   height: 100%;
 }
 
+.btnDisable {
+  background-color: grey !important;
+  text-decoration: line-through black;
+}
+
+.UpperBold {
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  font-family: "clashRoyalBold";
+  text-transform: uppercase;
+}
+
+.lowerBold {
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  font-family: "clashRoyalBold";
+}
+
+/*******************
+    Layout.html
+*******************/
+.navBar {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  height: 30px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+}
+.navBar button {
+  border: none;
+  background-color: #3A87DD;
+  border-radius: 5px;
+  margin: 0 10px;
+  font-size: 12px;
+  padding: 4px;
+}
+
+.formTrep {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 25px;
+  height: auto;
+  width: 50%;
+  background-color: white;
+  border: 5px solid #3a87dd;
+  border-radius: 5px;
+  color: black;
+  z-index: 9;
+}
+.formTrep h2 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+.formTrep input {
+  width: 100%;
+  padding: 5px;
+  margin: 5px 0px 10px 0px;
+}
+.formTrep button {
+  width: 100%;
+  background-color: rgba(58, 135, 221, 0.8);
+  border-radius: 5px;
+  color: white;
+  border: none;
+  padding: 5px;
+}
+
+/*******************
+    receiveMessage.html
+*******************/
+.receiveMessage {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
+  padding: 5px;
+  border-radius: 5px;
+  z-index: 10;
+}
+
+.validMsg {
+  position: fixed;
+  top: 50px;
+  left: 0px;
+  background-color: rgba(97, 214, 113, 0.8);
+}
+
+.errorMsg {
+  background-color: rgba(189, 67, 65, 0.6);
+  margin-top: 50px;
+}
+
+.btnClose {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 13px;
+  text-align: center;
+  line-height: 13px;
+  color: white;
+  padding: 0;
+}
+
 /*******************
     Index.html
 *******************/
-.header {
-  height: 50%;
-  width: 75%;
+.headerClan {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  height: auto;
+  width: 40%;
   margin: 0 auto;
   margin-top: 50px;
+  border: 1px solid #396392;
+  background: rgba(58, 135, 221, 0.5);
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+}
+
+.legendClan {
+  text-align: center;
+  margin-bottom: 10px;
+}
+.legendClan span {
+  margin: 0;
+}
+.legendClan .nameClan {
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  font-family: "clashRoyalBold";
+  text-transform: uppercase;
+  font-size: 30px;
+}
+
+.descriptionClan {
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  font-size: 15px;
+  line-height: 15px;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.rankContent {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.listMember {
+  height: auto;
+  width: 40%;
+  margin: 0 auto;
+}
+
+.rowMember {
+  position: relative;
+  margin-top: 25px;
+  border: 1px solid #396392;
+  background: rgba(58, 135, 221, 0.5);
+}
+
+.blockItems {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.roleClan {
+  font-size: 9px;
+}
+
+.chest {
+  position: absolute;
+  bottom: -25px;
+  left: 10%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  width: 90%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.chest .iconChest {
+  height: 30px;
+  width: 20%;
+}
+
+.iconChest {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  height: 75px;
+  width: 75px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-bottom: 5px;
+}
+
+.chat {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  padding-bottom: 50px;
+  height: calc(100% - 30px);
+  width: 25%;
+}
+.chat ul {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-end;
+  width: 100%;
+}
+.chat ul li {
+  font-size: 10px;
+  line-height: 12px;
+  margin-top: 5px;
+  padding: 5px;
   background: rgba(0, 0, 0, 0.7);
+}
+.chat div {
+  position: absolute;
+  bottom: 0;
+}
+.chat div input {
+  height: auto;
+  width: 100%;
+  padding: 5px;
+  word-break: break-all;
+  color: black;
+  font-size: 10px;
+  border: none;
+}
+.chat div button {
+  width: 100%;
+  font-size: 16px;
+  background-color: #3A87DD;
+  border-radius: 5px;
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+  margin-bottom: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.itemMessage {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  height: auto;
+  width: 100%;
+  border-radius: 10px;
+  background-color: #3A87DD;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
 
 /*# sourceMappingURL=frontend-Page.css.map */
