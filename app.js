@@ -146,7 +146,7 @@ let taskCronDataMember = cron.schedule('*/1 * * * *', () => {
 
     request(URLAPI, options, (err, response, body) => {
         if (err || response.statusCode !== 200) {
-            console.log(response.statusCode); 
+            console.log(err, response); 
         } 
 
         let dataCR = JSON.parse(body)
@@ -168,7 +168,7 @@ let taskCronDataMember = cron.schedule('*/1 * * * *', () => {
             
             request(urlMemberChest, options, (err, response, body) => {
                 if (err || response.statusCode !== 200) {
-                    console.log(response.statusCode); 
+                    console.log(err, response); 
                 } 
                 memberChest[idMember] = JSON.parse(body); 
 
@@ -176,7 +176,7 @@ let taskCronDataMember = cron.schedule('*/1 * * * *', () => {
 
                 request(urlMemberData, options, (err, response, body) => {
                     if (err || response.statusCode !== 200) {
-                        console.log(response.statusCode); 
+                        console.log(err, response); 
                     } 
 
                     memberGlobal[idMember] = JSON.parse(body); 
@@ -222,7 +222,7 @@ let taskCronWarLog = cron.schedule('*/1 * * * *', () => {
     
     request(URLAPIWarlog, options, (err, response, body) => {
         if (err || response.statusCode !== 200) {
-            console.log(response.statusCode); 
+            console.log(err, response);  
         } 
         
         dataWarlog = JSON.parse(body); 
