@@ -126,7 +126,7 @@ let taskCron = cron.schedule('*/1 * * * *', () => {
 
     request(URLAPI, options, (err, response, body) => {
         if (err || response.statusCode !== 200) {
-            throw err; 
+            console.log(err, response); 
         } 
 
         let dataCR = JSON.parse(body)
@@ -148,13 +148,16 @@ let taskCron = cron.schedule('*/1 * * * *', () => {
             
             request(urlMemberChest, options, (err, response, body) => {
                 if (err || response.statusCode !== 200) {
-                    throw err;
+                    console.log(err, response); 
                 } 
                 memberChest[idMember] = JSON.parse(body); 
 
                 let urlMemberData = `https://api.clashroyale.com/v1/players/${param}`
 
                 request(urlMemberData, options, (err, response, body) => {
+                    if (err || response.statusCode !== 200) {
+                        console.log(err, response); 
+                    } 
 
                     memberGlobal[idMember] = JSON.parse(body); 
 
