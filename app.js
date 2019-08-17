@@ -39,20 +39,20 @@ const pug = require('pug');
 // let proxy = url.parse(process.env.QUOTAGUARDSTATIC_URL);
 // let target  = url.parse("https://sn-api-clash-royale.herokuapp.com/");
 
-// let options = {
-//     proxy: process.env.QUOTAGUARDSTATIC_URL,
-    
-//     headers: {
-//         'User-Agent': 'node.js',
-//         'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjE4MTk2NjhlLWM5NmMtNGJkYS1iNTZiLTY0NzllMmU5OTk0NiIsImlhdCI6MTU2NTg4NTA1NCwic3ViIjoiZGV2ZWxvcGVyL2M5Mjg3NjNjLWJhMWEtNDFiMi01OWQ5LTcyNTE4ZmQ5Y2NhNiIsInNjb3BlcyI6WyJyb3lhbGUiXSwibGltaXRzIjpbeyJ0aWVyIjoiZGV2ZWxvcGVyL3NpbHZlciIsInR5cGUiOiJ0aHJvdHRsaW5nIn0seyJjaWRycyI6WyI1NC4xOTQuODYuMjA0IiwiNTQuMTk0Ljk4LjEzNiJdLCJ0eXBlIjoiY2xpZW50In1dfQ.tz2YeHWemFRiWcjG1cc_hct4h9biDEtp_vWFvcb_G2ETtT7IlyydFtTAX3xqQDU1ihWD9xVzr_MuPSeuJdPNYA"
-//     }
-// };
-
 let options = {
+    proxy: process.env.QUOTAGUARDSTATIC_URL,
+    
     headers: {
-        'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjFiNzYxMGM5LTU5ZTgtNGNlZi05ZGE1LWMyYTVkMmM5ZTA0NiIsImlhdCI6MTU2NjA0MTAwMywic3ViIjoiZGV2ZWxvcGVyL2M5Mjg3NjNjLWJhMWEtNDFiMi01OWQ5LTcyNTE4ZmQ5Y2NhNiIsInNjb3BlcyI6WyJyb3lhbGUiXSwibGltaXRzIjpbeyJ0aWVyIjoiZGV2ZWxvcGVyL3NpbHZlciIsInR5cGUiOiJ0aHJvdHRsaW5nIn0seyJjaWRycyI6WyI4OS44MC4xMDcuMjM2Il0sInR5cGUiOiJjbGllbnQifV19.9cf8BDG4hd7F90dkKN9OTwlFAaqsSD5ULqcfpM2SQBRAbb5mfalyWR8-1y31MgospAGKNnkK0wlELBs5ImhkDg"
-    }   
+        'User-Agent': 'node.js',
+        'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjE4MTk2NjhlLWM5NmMtNGJkYS1iNTZiLTY0NzllMmU5OTk0NiIsImlhdCI6MTU2NTg4NTA1NCwic3ViIjoiZGV2ZWxvcGVyL2M5Mjg3NjNjLWJhMWEtNDFiMi01OWQ5LTcyNTE4ZmQ5Y2NhNiIsInNjb3BlcyI6WyJyb3lhbGUiXSwibGltaXRzIjpbeyJ0aWVyIjoiZGV2ZWxvcGVyL3NpbHZlciIsInR5cGUiOiJ0aHJvdHRsaW5nIn0seyJjaWRycyI6WyI1NC4xOTQuODYuMjA0IiwiNTQuMTk0Ljk4LjEzNiJdLCJ0eXBlIjoiY2xpZW50In1dfQ.tz2YeHWemFRiWcjG1cc_hct4h9biDEtp_vWFvcb_G2ETtT7IlyydFtTAX3xqQDU1ihWD9xVzr_MuPSeuJdPNYA"
+    }
 };
+
+// let options = {
+//     headers: {
+//         'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjFiNzYxMGM5LTU5ZTgtNGNlZi05ZGE1LWMyYTVkMmM5ZTA0NiIsImlhdCI6MTU2NjA0MTAwMywic3ViIjoiZGV2ZWxvcGVyL2M5Mjg3NjNjLWJhMWEtNDFiMi01OWQ5LTcyNTE4ZmQ5Y2NhNiIsInNjb3BlcyI6WyJyb3lhbGUiXSwibGltaXRzIjpbeyJ0aWVyIjoiZGV2ZWxvcGVyL3NpbHZlciIsInR5cGUiOiJ0aHJvdHRsaW5nIn0seyJjaWRycyI6WyI4OS44MC4xMDcuMjM2Il0sInR5cGUiOiJjbGllbnQifV19.9cf8BDG4hd7F90dkKN9OTwlFAaqsSD5ULqcfpM2SQBRAbb5mfalyWR8-1y31MgospAGKNnkK0wlELBs5ImhkDg"
+//     }   
+// };
 
 var multer = require('multer');
 var upload = multer({
