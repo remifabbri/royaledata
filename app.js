@@ -223,8 +223,8 @@ let taskCronWarLog = cron.schedule('*/1 * * * *', () => {
             console.log(err, response);  
         } 
         
-        dataWarlog = JSON.parse(body); 
-        aggreClanWarlog = {}; 
+        let dataWarlog = JSON.parse(body); 
+        let aggreClanWarlog = {}; 
 
         dataWarlog.items.forEach( warlog => {
             warlog.participants.forEach(memberWarlog => {
