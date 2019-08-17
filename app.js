@@ -206,15 +206,6 @@ let taskCronDataMember = cron.schedule('*/1 * * * *', () => {
             });
         }); 
     });
-});
-
-let taskCronWarLog = cron.schedule('*/1 * * * *', () => {
-
-    // let options = {
-    //     headers: {
-    //         'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjdjMDYwOTEwLTFjOTYtNDU5My1hN2VkLWYwMTkzYTIyNDg4OCIsImlhdCI6MTU2NTg3NjIwNywic3ViIjoiZGV2ZWxvcGVyL2M5Mjg3NjNjLWJhMWEtNDFiMi01OWQ5LTcyNTE4ZmQ5Y2NhNiIsInNjb3BlcyI6WyJyb3lhbGUiXSwibGltaXRzIjpbeyJ0aWVyIjoiZGV2ZWxvcGVyL3NpbHZlciIsInR5cGUiOiJ0aHJvdHRsaW5nIn0seyJjaWRycyI6WyI1NC4xOTQuODYuMjA0Il0sInR5cGUiOiJjbGllbnQifV19.g5c2bzSTveUPDdouFwM3C5Y4v93sJGrjNfXgKkmZDwCHNWNY1u8HA51cHSvk7G3KOe-a50e1aeSA7kjsD3JBTA"
-    //     }   
-    // };
 
     let URLAPIWarlog = "https://api.clashroyale.com/v1/clans/%23RYYRLV/warlog"; 
     
@@ -254,8 +245,19 @@ let taskCronWarLog = cron.schedule('*/1 * * * *', () => {
     }); 
 });
 
+// let taskCronWarLog = cron.schedule('*/1 * * * *', () => {
+
+//     // let options = {
+//     //     headers: {
+//     //         'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjdjMDYwOTEwLTFjOTYtNDU5My1hN2VkLWYwMTkzYTIyNDg4OCIsImlhdCI6MTU2NTg3NjIwNywic3ViIjoiZGV2ZWxvcGVyL2M5Mjg3NjNjLWJhMWEtNDFiMi01OWQ5LTcyNTE4ZmQ5Y2NhNiIsInNjb3BlcyI6WyJyb3lhbGUiXSwibGltaXRzIjpbeyJ0aWVyIjoiZGV2ZWxvcGVyL3NpbHZlciIsInR5cGUiOiJ0aHJvdHRsaW5nIn0seyJjaWRycyI6WyI1NC4xOTQuODYuMjA0Il0sInR5cGUiOiJjbGllbnQifV19.g5c2bzSTveUPDdouFwM3C5Y4v93sJGrjNfXgKkmZDwCHNWNY1u8HA51cHSvk7G3KOe-a50e1aeSA7kjsD3JBTA"
+//     //     }   
+//     // };
+
+   
+// });
+
 taskCronDataMember.start(); 
-taskCronWarLog.start(); 
+// taskCronWarLog.start(); 
 
 http.listen(PORT, function(err){
     console.log(`royaledata lancé sur le port`);
